@@ -84,7 +84,6 @@ function pmpro_mailpoet_admin_init() {
 	//Opt-In List Settings.
 	add_settings_section('pmpro_mailpoet_section_opt_in_lists', __('Opt-In Lists', 'pmpro-mailpoet'), 'pmpro_mailpoet_section_opt_in_lists', 'pmpro_mailpoet_options');
 	add_settings_field('pmpro_mailpoet_option_opt_in_lists', __('Lists to Show', 'pmpro-mailpoet'), 'pmpro_mailpoet_option_opt_in_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists');
-	
 }
 add_action("admin_init", "pmpro_mailpoet_admin_init");
 
@@ -196,9 +195,7 @@ function pmpro_mailpoet_option_nonmember_lists() {
  */
 function pmpro_mailpoet_option_unsubscribe_on_level_change() {
 	$options = pmpro_mailpoet_get_options();
-	if ( empty( $options['unsubscribe_on_level_change'] ) ) {
-		$options['unsubscribe_on_level_change'] = 1;
-	}
+
 	?>
 	<select name="pmpro_mailpoet_options[unsubscribe_on_level_change]">
 		<option value="0" <?php selected($options['unsubscribe_on_level_change'], 0); ?>><?php _e('No.', 'pmpro-mailpoet');?></option>
