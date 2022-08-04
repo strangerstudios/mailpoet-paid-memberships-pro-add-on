@@ -10,7 +10,7 @@ function pmpro_mailpoet_add_admin_page() {
     }
 
 	if( version_compare( PMPRO_VERSION, '2.0' ) >= 0 ) {
-		add_submenu_page( 'pmpro-dashboard', __('MailPoet', 'pmpro-mailpoet' ), __('MailPoet', 'pmpro-mailpoet' ), 'manage_options', 'pmpro-mailpoet', 'pmpro_mailpoet_render_adminpage' );
+		add_submenu_page( 'pmpro-dashboard', __('MailPoet', 'pmpro-mailpoet' ), __('PMPro MailPoet', 'pmpro-mailpoet' ), 'manage_options', 'pmpro-mailpoet', 'pmpro_mailpoet_render_adminpage' );
 	}
 }
 add_action( 'admin_menu', 'pmpro_mailpoet_add_admin_page', 20 );
@@ -79,7 +79,6 @@ function pmpro_mailpoet_admin_init() {
 	}
 	add_settings_field('pmpro_mailpoet_option_nonmember_lists', __('Non-Member Lists', 'pmpro-mailpoet'), 'pmpro_mailpoet_option_nonmember_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists');
 	add_settings_field('pmpro_mailpoet_option_unsubscribe_on_level_change', __('Unsubscribe on Level Change?', 'pmpro-mailpoet'), 'pmpro_mailpoet_option_unsubscribe_on_level_change', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists');
-	add_settings_field('pmpro_mailpoet_option_import_members', __('Import Existing Members', 'pmpro-mailpoet'), 'pmpro_mailpoet_option_import_members', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists');
 
 	//Opt-In List Settings.
 	add_settings_section('pmpro_mailpoet_section_opt_in_lists', __('Opt-In Lists', 'pmpro-mailpoet'), 'pmpro_mailpoet_section_opt_in_lists', 'pmpro_mailpoet_options');
@@ -201,29 +200,6 @@ function pmpro_mailpoet_option_unsubscribe_on_level_change() {
 		<option value="0" <?php selected($options['unsubscribe_on_level_change'], 0); ?>><?php _e('No.', 'pmpro-mailpoet');?></option>
 		<option value="1" <?php selected($options['unsubscribe_on_level_change'], 1); ?>><?php _e('Yes, unsubscribe from old membership lists on level change.', 'pmpro-mailpoet');?></option>
 	</select>
-	<?php
-}
-
-/**
- * Show instructions for importing existing members to MailPoet lists.
- *
- * @since TBD
- */
-function pmpro_mailpoet_option_import_members() {
-	?>
-	<p><?php esc_html_e( 'After setting up your membership lists, you can import existing users to those lists by:', 'pmpro-mailpoet' ); ?></p>
-	<ol>
-		<li><?php esc_html_e( 'Navigating to the PMPro Members settings page.', 'pmpro-mailpoet' ); ?></li>
-		<li><?php esc_html_e( 'Filtering by the membership level of users that you would like to import into a MailPoet list.', 'pmpro-mailpoet' ); ?></li>
-		<li><?php esc_html_e( 'Clicking the "Export to CSV" button.', 'pmpro-mailpoet' ); ?></li>
-		<li><?php esc_html_e( 'Navigating to the MailPoet Subscribers settings page.', 'pmpro-mailpoet' ); ?></li>
-		<li><?php esc_html_e( 'Clicking the "Import" button.', 'pmpro-mailpoet' ); ?></li>
-		<li><?php esc_html_e( 'Choosing to import from a file and selecting the CSV file that was exported from PMPro.', 'pmpro-mailpoet' ); ?></li>
-		<li><?php esc_html_e( 'Choosing to import users as contacts as an existing mailing list with the last email sent to them in the last year.', 'pmpro-mailpoet' ); ?></li>
-		<li><?php esc_html_e( 'Ensure that the dropdown above the "EMAIL" column in the spreadsheet is set to "Email"', 'pmpro-mailpoet' ); ?></li>
-		<li><?php esc_html_e( 'Select the list that you would like to add the subscribers to.', 'pmpro-mailpoet' ); ?></li>
-		<li><?php esc_html_e( 'Click the "Import" button.', 'pmpro-mailpoet' ); ?></li>
-	</ol>
 	<?php
 }
 
