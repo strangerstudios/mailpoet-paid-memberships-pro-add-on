@@ -3,7 +3,7 @@
 Plugin Name: Paid Memberships Pro - MailPoet Add On
 Plugin URI: http://www.paidmembershipspro.com/pmpro-mailpoet/
 Description: Sync your WordPress users and members with MailPoet lists.
-Version: 0.0
+Version: 0.1
 Author: Stranger Studios
 Author URI: http://www.strangerstudios.com
 Text Domain: pmpro-mailpoet
@@ -17,6 +17,31 @@ require_once PMPRO_MAILPOET_DIR . '/includes/members-lists-functions.php'; // Ha
 require_once PMPRO_MAILPOET_DIR . '/includes/opt-in-lists-functions.php';  // Handle adding/removing users from opt-in lists.
 require_once PMPRO_MAILPOET_DIR . '/includes/api-wrapper.php';             // Abstract API interaction.
 require_once PMPRO_MAILPOET_DIR . '/includes/settings.php';                // Set up settings page.
+
+/**
+ * Shows a notice on the PMPro MailPoet settings page if MailPoet V3 isn't installed.
+ */
+function pmpro_mailpoet_show_notice() {
+	global $msg, $msgt;
+
+	// MailPoet V3 is installed, just bail.
+	if ( function_exists( 'mailpoet_deactivate_plugin' ) ) {
+		return;
+	}
+	//Show the notice here.
+	if ( ! empty( $_REQUEST['page'] ) && sanitize_text_field( $_REQUEST['page'] ) == 'pmpro-mailpoet' ) {
+		$mailpoet_v3_org = 'https://wordpress.org/plugins/mailpoet/';
+		$msgt = sprintf( 
+			__( "In order for <strong>Paid Memberships Pro - MailPoet Integration</strong> to function correctly, you must install or activate the latest version of <a href='%s' target='_blank'>MailPoet v3</a>.", 'pmpro-mailpoet' ), 
+			esc_url( $mailpoet_v3_org )
+		 );
+
+		pmpro_setMessage( $msgt, 'error' );
+		pmpro_showMessage();
+	}
+
+}
+add_action( 'admin_notices', 'pmpro_mailpoet_show_notice' );
 
 /**
  * Load the languages folder for translations.
