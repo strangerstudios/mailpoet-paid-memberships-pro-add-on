@@ -28,13 +28,13 @@ function pmpro_mailpoet_show_notice() {
 	if ( function_exists( 'mailpoet_deactivate_plugin' ) ) {
 		return;
 	}
-	//Show the notice here.
+	// Show the notice here.
 	if ( ! empty( $_REQUEST['page'] ) && sanitize_text_field( $_REQUEST['page'] ) == 'pmpro-mailpoet' ) {
 		$mailpoet_v3_org = 'https://wordpress.org/plugins/mailpoet/';
-		$msgt = sprintf( 
-			__( "In order for <strong>Paid Memberships Pro - MailPoet Integration</strong> to function correctly, you must install or activate the latest version of <a href='%s' target='_blank'>MailPoet v3</a>.", 'pmpro-mailpoet' ), 
+		$msgt            = sprintf(
+			__( "In order for <strong>Paid Memberships Pro - MailPoet Integration</strong> to function correctly, you must install or activate the latest version of <a href='%s' target='_blank'>MailPoet v3</a>.", 'pmpro-mailpoet' ),
 			esc_url( $mailpoet_v3_org )
-		 );
+		);
 
 		pmpro_setMessage( $msgt, 'error' );
 		pmpro_showMessage();
@@ -59,7 +59,7 @@ add_action( 'plugins_loaded', 'pmpro_mailpoet_load_textdomain' );
  * @since TBD
  */
 function pmpro_mailpoet_scripts() {
-	wp_enqueue_style("pmprorh_frontend", plugins_url( 'css/pmpromailpoet.css', PMPRO_MAILPOET_BASE_FILE ), NULL, "");
+	wp_enqueue_style( 'pmprorh_frontend', plugins_url( 'css/pmpromailpoet.css', PMPRO_MAILPOET_BASE_FILE ), null, '' );
 }
 add_action( 'admin_enqueue_scripts', 'pmpro_mailpoet_scripts' );
 add_action( 'wp_enqueue_scripts', 'pmpro_mailpoet_scripts' );
@@ -90,15 +90,14 @@ add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'pmpro_mailpoe
  * @param $file - main plugin filename
  * @return array - Array of links
  */
-function pmpro_mailpoet_plugin_row_meta($links, $file)
-{
-	if (strpos($file, 'pmpro-mailpoet.php') !== false) {
+function pmpro_mailpoet_plugin_row_meta( $links, $file ) {
+	if ( strpos( $file, 'pmpro-mailpoet.php' ) !== false ) {
 		$new_links = array(
-			'<a href="' . esc_url('https://www.paidmembershipspro.com/add-ons/pmpro-mailpoet-integration/') . '" title="' . esc_attr(__('View Documentation', 'pmpro-mailpoet')) . '">' . __('Docs', 'pmpro-mailpoet') . '</a>',
-			'<a href="' . esc_url('https://www.paidmembershipspro.com/support/') . '" title="' . esc_attr(__('Visit Customer Support Forum', 'pmpro-mailpoet')) . '">' . __('Support', 'pmpro-mailpoet') . '</a>',
+			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/add-ons/pmpro-mailpoet-integration/' ) . '" title="' . esc_attr( __( 'View Documentation', 'pmpro-mailpoet' ) ) . '">' . __( 'Docs', 'pmpro-mailpoet' ) . '</a>',
+			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/support/' ) . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'pmpro-mailpoet' ) ) . '">' . __( 'Support', 'pmpro-mailpoet' ) . '</a>',
 		);
-		$links = array_merge($links, $new_links);
+		$links     = array_merge( $links, $new_links );
 	}
 	return $links;
 }
-add_filter('plugin_row_meta', 'pmpro_mailpoet_plugin_row_meta', 10, 2);
+add_filter( 'plugin_row_meta', 'pmpro_mailpoet_plugin_row_meta', 10, 2 );

@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
  * Add Menu Item for "MailPoet".
  *
@@ -6,11 +6,11 @@
  */
 function pmpro_mailpoet_add_admin_page() {
 	if ( ! defined( 'PMPRO_VERSION' ) ) {
-        return;
-    }
+		return;
+	}
 
-	if( version_compare( PMPRO_VERSION, '2.0' ) >= 0 ) {
-		add_submenu_page( 'pmpro-dashboard', __('MailPoet', 'pmpro-mailpoet' ), __('PMPro MailPoet', 'pmpro-mailpoet' ), 'manage_options', 'pmpro-mailpoet', 'pmpro_mailpoet_render_adminpage' );
+	if ( version_compare( PMPRO_VERSION, '2.0' ) >= 0 ) {
+		add_submenu_page( 'pmpro-dashboard', __( 'MailPoet', 'pmpro-mailpoet' ), __( 'PMPro MailPoet', 'pmpro-mailpoet' ), 'manage_options', 'pmpro-mailpoet', 'pmpro_mailpoet_render_adminpage' );
 	}
 }
 add_action( 'admin_menu', 'pmpro_mailpoet_add_admin_page', 20 );
@@ -22,15 +22,22 @@ add_action( 'admin_menu', 'pmpro_mailpoet_add_admin_page', 20 );
  */
 function pmpro_mailpoet_admin_bar_menu() {
 	global $wp_admin_bar;
-	if ( !is_super_admin() || !is_admin_bar_showing() )
+	if ( ! is_super_admin() || ! is_admin_bar_showing() ) {
 		return;
-	$wp_admin_bar->add_menu( array(
-	'id' => 'pmpro-mailpoet',
-	'parent' => 'paid-memberships-pro',
-	'title' => __( 'MailPoet', 'pmpro-mailpoet'),
-	'href' => get_admin_url(NULL, '/admin.php?page=pmpro-mailpoet') ) );
+	}
+	$wp_admin_bar->add_menu(
+		array(
+			'id'     => 'pmpro-mailpoet',
+			'parent' => 'paid-memberships-pro',
+			'title'  => esc_html__( 'MailPoet', 'pmpro-mailpoet' ),
+			'href'   => get_admin_url(
+				null,
+				'/admin.php?page=pmpro-mailpoet'
+			),
+		)
+	);
 }
-add_action('admin_bar_menu', 'pmpro_mailpoet_admin_bar_menu', 1000);
+add_action( 'admin_bar_menu', 'pmpro_mailpoet_admin_bar_menu', 1000 );
 
 /**
  * Render the MailPoet settings page.
@@ -41,21 +48,18 @@ function pmpro_mailpoet_render_adminpage() {
 	?>
 	<div class="wrap">
 		<div id="icon-options-general" class="icon32"><br></div>
-		<h2><?php _e( 'MailPoet Integration Options and Settings', 'pmpro-mailpoet' );?></h2>
+		<h2><?php esc_html_e( 'Paid Memberships Pro - MailPoet Integration Settings', 'pmpro-mailpoet' ); ?></h2>
 
-		<?php if (!empty($msg)) { ?>
-			<div class="message <?php echo $msgt; ?>"><p><?php echo $msg; ?></p></div>
-		<?php } ?>
 		<?php pmpro_mailpoet_admin_warnings(); ?>
 		<form action="options.php" method="post">
-			<?php settings_fields('pmpro_mailpoet_options'); ?>
-			<?php do_settings_sections('pmpro_mailpoet_options'); ?>
+			<?php settings_fields( 'pmpro_mailpoet_options' ); ?>
+			<?php do_settings_sections( 'pmpro_mailpoet_options' ); ?>
 
 			<p><br/></p>
 
 			<div class="bottom-buttons">
 				<input type="hidden" name="pmpro_mailpoet_options[set]" value="1"/>
-				<input type="submit" name="submit" class="button-primary" value="<?php esc_attr_e(__('Save Settings', 'pmpro-mailpoet')); ?>">
+				<input type="submit" name="submit" class="button-primary" value="<?php esc_attr_e( 'Save Settings', 'pmpro-mailpoet' ); ?>">
 			</div>
 
 		</form>
@@ -69,22 +73,22 @@ function pmpro_mailpoet_render_adminpage() {
  * @since TBD
  */
 function pmpro_mailpoet_admin_init() {
-	register_setting('pmpro_mailpoet_options', 'pmpro_mailpoet_options', 'pmpro_mailpoet_options_validate');
+	register_setting( 'pmpro_mailpoet_options', 'pmpro_mailpoet_options', 'pmpro_mailpoet_options_validate' );
 
 	// Membership List Settings.
-	add_settings_section('pmpro_mailpoet_section_membership_lists', __('Membership Lists', 'pmpro-mailpoet'), 'pmpro_mailpoet_section_membership_lists', 'pmpro_mailpoet_options');
+	add_settings_section( 'pmpro_mailpoet_section_membership_lists', esc_html__( 'Membership Lists', 'pmpro-mailpoet' ), 'pmpro_mailpoet_section_membership_lists', 'pmpro_mailpoet_options' );
 	$levels = pmpro_mailpoet_get_all_levels();
 	foreach ( $levels as $level ) {
-		add_settings_field('pmpro_mailpoet_option_memberships_lists_' . $level->id, $level->name, 'pmpro_mailpoet_option_memberships_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists', array($level));
+		add_settings_field( 'pmpro_mailpoet_option_memberships_lists_' . (int) $level->id, esc_html( $level->name ), 'pmpro_mailpoet_option_memberships_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists', array( $level ) );
 	}
-	add_settings_field('pmpro_mailpoet_option_nonmember_lists', __('Non-Member Lists', 'pmpro-mailpoet'), 'pmpro_mailpoet_option_nonmember_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists');
-	add_settings_field('pmpro_mailpoet_option_unsubscribe_on_level_change', __('Unsubscribe on Level Change?', 'pmpro-mailpoet'), 'pmpro_mailpoet_option_unsubscribe_on_level_change', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists');
+	add_settings_field( 'pmpro_mailpoet_option_nonmember_lists', esc_html__( 'Non-Member Lists', 'pmpro-mailpoet' ), 'pmpro_mailpoet_option_nonmember_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists' );
+	add_settings_field( 'pmpro_mailpoet_option_unsubscribe_on_level_change', esc_html__( 'Unsubscribe on Level Change?', 'pmpro-mailpoet' ), 'pmpro_mailpoet_option_unsubscribe_on_level_change', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists' );
 
-	//Opt-In List Settings.
-	add_settings_section('pmpro_mailpoet_section_opt_in_lists', __('Opt-In Lists', 'pmpro-mailpoet'), 'pmpro_mailpoet_section_opt_in_lists', 'pmpro_mailpoet_options');
-	add_settings_field('pmpro_mailpoet_option_opt_in_lists', __('Lists to Show', 'pmpro-mailpoet'), 'pmpro_mailpoet_option_opt_in_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists');
+	// Opt-In List Settings.
+	add_settings_section( 'pmpro_mailpoet_section_opt_in_lists', esc_html__( 'Opt-In Lists', 'pmpro-mailpoet' ), 'pmpro_mailpoet_section_opt_in_lists', 'pmpro_mailpoet_options' );
+	add_settings_field( 'pmpro_mailpoet_option_opt_in_lists', esc_html__( 'Lists to Show', 'pmpro-mailpoet' ), 'pmpro_mailpoet_option_opt_in_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
 }
-add_action("admin_init", "pmpro_mailpoet_admin_init");
+add_action( 'admin_init', 'pmpro_mailpoet_admin_init' );
 
 /**
  * Validate the MailPoet settings on save.
@@ -98,7 +102,7 @@ function pmpro_mailpoet_options_validate( $input ) {
 	$newinput = array();
 
 	// Unsubscribe on level change.
-	$newinput['unsubscribe_on_level_change'] = isset( $input['unsubscribe_on_level_change'] ) ? preg_replace( "[^a-zA-Z0-9\-]", "", $input['unsubscribe_on_level_change'] ) : null;
+	$newinput['unsubscribe_on_level_change'] = isset( $input['unsubscribe_on_level_change'] ) ? preg_replace( '[^a-zA-Z0-9\-]', '', $input['unsubscribe_on_level_change'] ) : null;
 
 	// Checkboxes of lists to save.
 	$mailpoet_lists_settings = array(
@@ -107,15 +111,16 @@ function pmpro_mailpoet_options_validate( $input ) {
 	);
 
 	$levels = pmpro_mailpoet_get_all_levels();
-	foreach ($levels as $level) {
-		$mailpoet_lists_settings[] = 'level_' . $level->id . '_lists';
+	foreach ( $levels as $level ) {
+		$mailpoet_lists_settings[] = 'level_' . (int) $level->id . '_lists';
 	}
 
-	foreach ($mailpoet_lists_settings as $setting) {
-		if (!empty($input[ $setting ]) && is_array($input[ $setting ])) {
-			$count = count($input[ $setting ]);
-			for ($i = 0; $i < $count; $i++)
-				$newinput[ $setting ][] = trim(preg_replace("[^a-zA-Z0-9\-]", "", $input[ $setting ][$i]));;
+	foreach ( $mailpoet_lists_settings as $setting ) {
+		if ( ! empty( $input[ $setting ] ) && is_array( $input[ $setting ] ) ) {
+			$count = count( $input[ $setting ] );
+			for ( $i = 0; $i < $count; $i++ ) {
+				$newinput[ $setting ][] = trim( preg_replace( '[^a-zA-Z0-9\-]', '', $input[ $setting ][ $i ] ) );
+			}
 		}
 	}
 
@@ -128,8 +133,8 @@ function pmpro_mailpoet_options_validate( $input ) {
  * @since TBD
  */
 function pmpro_mailpoet_admin_warnings() {
-	$levels = pmpro_mailpoet_get_all_levels();
-	$options = pmpro_mailpoet_get_options();
+	$levels     = pmpro_mailpoet_get_all_levels();
+	$options    = pmpro_mailpoet_get_options();
 	$show_error = false;
 
 	if ( empty( $options['opt-in_lists'] ) ) {
@@ -174,7 +179,7 @@ function pmpro_mailpoet_section_membership_lists() {
  * @param object $level The level to show the lists for.
  */
 function pmpro_mailpoet_option_memberships_lists( $level ) {
-	pmpro_mailpoet_settings_build_list_checkboxes_helper( 'level_' . $level[0]->id . '_lists' );
+	pmpro_mailpoet_settings_build_list_checkboxes_helper( 'level_' . (int) $level[0]->id . '_lists' );
 }
 
 /**
@@ -184,7 +189,7 @@ function pmpro_mailpoet_option_memberships_lists( $level ) {
  */
 function pmpro_mailpoet_option_nonmember_lists() {
 	pmpro_mailpoet_settings_build_list_checkboxes_helper( 'nonmember_lists' );
-	echo '<p class="description">' . __( 'Users will automatically be subscribed to non-member lists when they register without purchasing a membership level or when their membership level is removed.', 'pmpro-mailpoet' ) . '</p>';
+	echo '<p class="description">' . esc_html__( 'Users will automatically be subscribed to non-member lists when they register without purchasing a membership level or when their membership level is removed.', 'pmpro-mailpoet' ) . '</p>';
 }
 
 /**
@@ -197,8 +202,8 @@ function pmpro_mailpoet_option_unsubscribe_on_level_change() {
 
 	?>
 	<select name="pmpro_mailpoet_options[unsubscribe_on_level_change]">
-		<option value="0" <?php selected($options['unsubscribe_on_level_change'], 0); ?>><?php _e('No.', 'pmpro-mailpoet');?></option>
-		<option value="1" <?php selected($options['unsubscribe_on_level_change'], 1); ?>><?php _e('Yes, unsubscribe from old membership lists on level change.', 'pmpro-mailpoet');?></option>
+		<option value="0" <?php selected( $options['unsubscribe_on_level_change'], 0 ); ?>><?php esc_html_e( 'No.', 'pmpro-mailpoet' ); ?></option>
+		<option value="1" <?php selected( $options['unsubscribe_on_level_change'], 1 ); ?>><?php esc_html_e( 'Yes, unsubscribe from old membership lists on level change.', 'pmpro-mailpoet' ); ?></option>
 	</select>
 	<?php
 }
@@ -220,7 +225,7 @@ function pmpro_mailpoet_section_opt_in_lists() {
  * @since TBD
  */
 function pmpro_mailpoet_option_opt_in_lists() {
-	pmpro_mailpoet_settings_build_list_checkboxes_helper('opt-in_lists');
+	pmpro_mailpoet_settings_build_list_checkboxes_helper( 'opt-in_lists' );
 }
 
 /**
@@ -232,25 +237,30 @@ function pmpro_mailpoet_option_opt_in_lists() {
  */
 function pmpro_mailpoet_settings_build_list_checkboxes_helper( $option_name ) {
 	$pmpro_mailpoet_lists = pmpro_mailpoet_get_all_lists();
-	$options = pmpro_mailpoet_get_options();
+	$options              = pmpro_mailpoet_get_options();
 
-	if (isset($options[ $option_name ]) && is_array($options[ $option_name ]))
+	if ( isset( $options[ $option_name ] ) && is_array( $options[ $option_name ] ) ) {
 		$selected_lists = $options[ $option_name ];
-	else
+	} else {
 		$selected_lists = array();
+	}
 
-	if (!empty($pmpro_mailpoet_lists)) {
+	if ( ! empty( $pmpro_mailpoet_lists ) ) {
 		?>
-		<div <?php if(count($pmpro_mailpoet_lists) > 5) { ?>class="pmpromailpoet-checkbox-list-scrollable"<?php } ?>>
+		<div 
 		<?php
-		foreach ($pmpro_mailpoet_lists as $list) {
-			$checked_modifier = in_array($list['id'], $selected_lists) ? ' checked' : '';
-			echo( "<input type='checkbox' name='pmpro_mailpoet_options[" . esc_attr( $option_name ) . "][]' value='" . esc_attr( $list['id'] ) . "' id='pmpro_mailpoet_" . esc_attr( $option_name ) . "_" . esc_attr( $list['id'] ) . "'" . $checked_modifier . ">" );
-			echo( "<label for='pmpro_mailpoet_" . esc_attr( $option_name ) . "_" . esc_attr( $list['id'] ) .  "' class='pmpromailpoet-checkbox-label'>" . esc_html( $list['name'] ) .  "</label><br>" );
+		if ( count( $pmpro_mailpoet_lists ) > 5 ) {
+			?>
+			class="pmpromailpoet-checkbox-list-scrollable"<?php } ?>>
+		<?php
+		foreach ( $pmpro_mailpoet_lists as $list ) {
+			$checked_modifier = in_array( $list['id'], $selected_lists ) ? ' checked' : '';
+			echo( "<input type='checkbox' name='pmpro_mailpoet_options[" . esc_attr( $option_name ) . "][]' value='" . esc_attr( $list['id'] ) . "' id='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $list['id'] ) . "'" . $checked_modifier . '>' );
+			echo( "<label for='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $list['id'] ) . "' class='pmpromailpoet-checkbox-label'>" . esc_html( $list['name'] ) . '</label><br>' );
 		}
 		echo '</div>';
 	} else {
-		echo "No lists found.";
+		esc_html_e( 'No lists found.', 'pmpro-mailpoet' );
 	}
 
 }
