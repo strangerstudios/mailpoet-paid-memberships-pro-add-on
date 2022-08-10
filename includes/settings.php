@@ -74,6 +74,11 @@ function pmpro_mailpoet_render_adminpage() {
  */
 function pmpro_mailpoet_admin_init() {
 	register_setting( 'pmpro_mailpoet_options', 'pmpro_mailpoet_options', 'pmpro_mailpoet_options_validate' );
+	
+	// General Settings.
+	add_settings_section( 'pmpro_mailpoet_section_opt_in_lists', esc_html__( 'General Settings', 'pmpro-mailpoet' ), '', 'pmpro_mailpoet_options' );
+	add_settings_field( 'pmpro_mailpoet_option_nonmember_lists', esc_html__( 'Non-Member Lists', 'pmpro-mailpoet' ), 'pmpro_mailpoet_option_nonmember_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
+	add_settings_field( 'pmpro_mailpoet_option_opt_in_lists', esc_html__( 'Opt-in Lists', 'pmpro-mailpoet' ), 'pmpro_mailpoet_option_opt_in_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
 
 	// Membership List Settings.
 	add_settings_section( 'pmpro_mailpoet_section_membership_lists', esc_html__( 'Membership Lists', 'pmpro-mailpoet' ), 'pmpro_mailpoet_section_membership_lists', 'pmpro_mailpoet_options' );
@@ -81,12 +86,7 @@ function pmpro_mailpoet_admin_init() {
 	foreach ( $levels as $level ) {
 		add_settings_field( 'pmpro_mailpoet_option_memberships_lists_' . (int) $level->id, esc_html( $level->name ), 'pmpro_mailpoet_option_memberships_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists', array( $level ) );
 	}
-	add_settings_field( 'pmpro_mailpoet_option_nonmember_lists', esc_html__( 'Non-Member Lists', 'pmpro-mailpoet' ), 'pmpro_mailpoet_option_nonmember_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists' );
 	add_settings_field( 'pmpro_mailpoet_option_unsubscribe_on_level_change', esc_html__( 'Unsubscribe on Level Change?', 'pmpro-mailpoet' ), 'pmpro_mailpoet_option_unsubscribe_on_level_change', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists' );
-
-	// Opt-In List Settings.
-	add_settings_section( 'pmpro_mailpoet_section_opt_in_lists', esc_html__( 'Opt-In Lists', 'pmpro-mailpoet' ), 'pmpro_mailpoet_section_opt_in_lists', 'pmpro_mailpoet_options' );
-	add_settings_field( 'pmpro_mailpoet_option_opt_in_lists', esc_html__( 'Lists to Show', 'pmpro-mailpoet' ), 'pmpro_mailpoet_option_opt_in_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
 }
 add_action( 'admin_init', 'pmpro_mailpoet_admin_init' );
 
@@ -208,16 +208,6 @@ function pmpro_mailpoet_option_unsubscribe_on_level_change() {
 	<?php
 }
 
-/**
- * Add description for Opt-In Lists section.
- *
- * @since TBD
- */
-function pmpro_mailpoet_section_opt_in_lists() {
-	?>
-	<p><?php esc_html_e( 'Give users the option to subscribe to additional lists at checkout and on their profile page.', 'pmpro-mailpoet' ); ?></p>
-	<?php
-}
 
 /**
  * Show the "Opt-in Lists" setting.
@@ -226,6 +216,8 @@ function pmpro_mailpoet_section_opt_in_lists() {
  */
 function pmpro_mailpoet_option_opt_in_lists() {
 	pmpro_mailpoet_settings_build_list_checkboxes_helper( 'opt-in_lists' );
+	echo '<p class="description">' . esc_html__( 'Give users the option to subscribe to additional lists at checkout and on their profile page.', 'pmpro-mailpoet' ) . '</p>';
+
 }
 
 /**
