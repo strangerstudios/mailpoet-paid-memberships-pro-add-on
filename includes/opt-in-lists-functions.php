@@ -57,8 +57,8 @@ add_action( 'pmpro_checkout_after_tos_fields', 'pmpro_mailpoet_additional_lists_
  */
 function pmpro_mailpoet_pmpro_paypalexpress_session_vars() {
 	if ( isset( $_REQUEST['pmpro_mailpoet_opt-in_lists_showing'] ) ) {
-		$_SESSION['pmpro_mailpoet_opt-in_lists_showing'] = $_REQUEST['pmpro_mailpoet_opt-in_lists_showing'];
-		$_SESSION['pmpro_mailpoet_opt-in_lists']         = isset( $_REQUEST['pmpro_mailpoet_opt-in_lists'] ) ? $_REQUEST['pmpro_mailpoet_opt-in_lists'] : array();
+		$_SESSION['pmpro_mailpoet_opt-in_lists_showing'] = pmpro_sanitize( $_REQUEST['pmpro_mailpoet_opt-in_lists_showing'] );
+		$_SESSION['pmpro_mailpoet_opt-in_lists']         = isset( $_REQUEST['pmpro_mailpoet_opt-in_lists'] ) ? pmpro_sanitize( $_REQUEST['pmpro_mailpoet_opt-in_lists'] ) : array();
 	}
 }
 add_action( 'pmpro_paypalexpress_session_vars', 'pmpro_mailpoet_pmpro_paypalexpress_session_vars' );
@@ -125,7 +125,7 @@ function pmpro_mailpoet_show_optin_checkboxes( $user_id = null ) {
 
 	// Get the user's current lists.
 	if ( ! empty( $user_id ) ) {
-		$user_list_ids = pmpro_mailpoet_get_user_list_ids( $user_id, true );
+		$user_list_ids = pmpro_mailpoet_get_user_list_ids( $user_id );
 	} else {
 		$user_list_ids = array();
 	}
@@ -133,8 +133,9 @@ function pmpro_mailpoet_show_optin_checkboxes( $user_id = null ) {
 	// Show opt-in lists setting.
 	echo '<input type="hidden" name="pmpro_mailpoet_opt-in_lists_showing" value="1" />';
 	foreach ( $optin_lists as $optin_list ) {
-		echo( "<input type='checkbox' name='pmpro_mailpoet_opt-in_lists[]' value='" . esc_attr( $optin_list['id'] ) . "' id='pmpro_mailpoet_opt-in_lists_" . esc_attr( $optin_list['id'] ) . "'" . checked( $optin_list['id'], $user_list_ids ) . '>' );
-		echo( "<label for='pmpro_mailpoet_opt-in_lists_" . esc_attr( $optin_list['id'] ) . "' class='pmpromailpoet-checkbox-label'>" . esc_html( $optin_list['name'] ) . '</label><br>' );
+		$checked = in_array( $optin_list['id'], $user_list_ids );
+		echo "<input type='checkbox' name='pmpro_mailpoet_opt-in_lists[]' value='" . esc_attr( $optin_list['id'] ) . "' id='pmpro_mailpoet_opt-in_lists_" . esc_attr( $optin_list['id'] ) . "'" . checked( $checked, true, false ) . '>';
+		echo "<label for='pmpro_mailpoet_opt-in_lists_" . esc_attr( $optin_list['id'] ) . "' class='pmpromailpoet-checkbox-label'>" . esc_html( $optin_list['name'] ) . '</label><br>';
 	}
 }
 
@@ -160,10 +161,10 @@ function pmpro_mailpoet_save_optin_list_selections( $user_id ) {
 	// Get user's new opt-in lists.
 	if ( ! empty( $_REQUEST['pmpro_mailpoet_opt-in_lists_showing'] ) ) {
 		// Pull from $_REQUEST.
-		$selected_optin_list_ids = ! empty( $_REQUEST['pmpro_mailpoet_opt-in_lists'] ) ? sanitize_text_field( $_REQUEST['pmpro_mailpoet_opt-in_lists'] ) : array();
+		$selected_optin_list_ids = ! empty( $_REQUEST['pmpro_mailpoet_opt-in_lists'] ) ? pmpro_sanitize( $_REQUEST['pmpro_mailpoet_opt-in_lists'] ) : array();
 	} else {
 		// Pull from $_SESSION.
-		$selected_optin_list_ids = ! empty( $_SESSION['pmpro_mailpoet_opt-in_lists'] ) ? sanitize_text_field( $_SESSION['pmpro_mailpoet_opt-in_lists'] ) : array();
+		$selected_optin_list_ids = ! empty( $_SESSION['pmpro_mailpoet_opt-in_lists'] ) ? pmpro_sanitize( $_SESSION['pmpro_mailpoet_opt-in_lists'] ) : array();
 	}
 
 	// Get user's current lists.
