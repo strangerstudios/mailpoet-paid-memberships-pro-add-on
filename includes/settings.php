@@ -80,13 +80,15 @@ function pmpro_mailpoet_admin_init() {
 	add_settings_field( 'pmpro_mailpoet_option_nonmember_lists', esc_html__( 'Non-Member Lists', 'pmpro-mailpoet' ), 'pmpro_mailpoet_option_nonmember_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
 	add_settings_field( 'pmpro_mailpoet_option_opt_in_lists', esc_html__( 'Opt-in Lists', 'pmpro-mailpoet' ), 'pmpro_mailpoet_option_opt_in_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
 
-	// Membership List Settings.
+	//SendWP Email Deliverability.
+	add_settings_field( 'pmpro_mailpoet_sendwp_cta', 'Email Deliverability', 'pmpro_mailpoet_sendwp_cta', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
+
 	add_settings_section( 'pmpro_mailpoet_section_membership_lists', esc_html__( 'Membership Lists', 'pmpro-mailpoet' ), 'pmpro_mailpoet_section_membership_lists', 'pmpro_mailpoet_options' );
 	$levels = pmpro_mailpoet_get_all_levels();
 	foreach ( $levels as $level ) {
 		add_settings_field( 'pmpro_mailpoet_option_memberships_lists_' . (int) $level->id, esc_html( $level->name ), 'pmpro_mailpoet_option_memberships_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists', array( $level ) );
 	}
-	add_settings_field( 'pmpro_mailpoet_option_unsubscribe_on_level_change', esc_html__( 'Unsubscribe on Level Change?', 'pmpro-mailpoet' ), 'pmpro_mailpoet_option_unsubscribe_on_level_change', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists' );
+	add_settings_field( 'pmpro_mailpoet_option_unsubscribe_on_level_change', esc_html__( 'Unsubscribe on Level Change?', 'pmpro-mailpoet' ), 'pmpro_mailpoet_option_unsubscribe_on_level_change', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists' );	
 }
 add_action( 'admin_init', 'pmpro_mailpoet_admin_init' );
 
@@ -208,6 +210,47 @@ function pmpro_mailpoet_option_unsubscribe_on_level_change() {
 	<?php
 }
 
+/**
+ * Add SendWP connectivity settings callback. Copied  logic from PMPro core.
+ *
+ * @since TBD
+ */
+function pmpro_mailpoet_sendwp_cta() {
+	?>			
+	<p><?php
+			$allowed_email_troubleshooting_html = array (
+				'a' => array (
+					'href' => array(),
+					'target' => array(),
+					'title' => array(),
+					'rel' => array(),
+				),
+				'em' => array(),
+			);
+			echo sprintf( wp_kses( __( 'If you are having issues with email delivery from your server, <a href="%s" title="Paid Memberships Pro - Subscription Delays Add On" target="_blank" rel="nofollow noopener">please read our email troubleshooting guide</a>. As an alternative, Paid Memberships Pro offers built-in integration for SendWP. <em>Optional: SendWP is a third-party service for transactional email in WordPress. <a href="%s" title="Documentation on SendWP and Paid Memberships Pro" target="_blank" rel="nofollow noopener">Click here to learn more about SendWP and Paid Memberships Pro</a></em>.', 'pmpro-mailpoet' ), $allowed_email_troubleshooting_html ), 'https://www.paidmembershipspro.com/troubleshooting-email-issues-sending-sent-spam-delivery-delays/?utm_source=plugin&utm_medium=pmpro-emailsettings&utm_campaign=blog&utm_content=email-troubleshooting', 'https://www.paidmembershipspro.com/documentation/member-communications/email-delivery-sendwp/?utm_source=plugin&utm_medium=pmpro-emailsettings&utm_campaign=documentation&utm_content=sendwp' );
+		?></p>
+
+		<?php
+			// Check to see if connected or not.
+			$sendwp_connected = function_exists( 'sendwp_client_connected' ) && sendwp_client_connected() ? true : false;
+
+			if ( ! $sendwp_connected ) { ?>
+				<p><button id="pmpro-sendwp-connect" class="button"><?php esc_html_e( 'Connect to SendWP', 'pmpro-mailpoet' ); ?></button></p>
+			<?php } else { ?>
+				<p><button id="pmpro-sendwp-disconnect" class="button-primary"><?php esc_html_e( 'Disconnect from SendWP', 'pmpro-mailpoet' ); ?></button></p>
+				<?php
+				// Update SendWP status to see if email forwarding is enabled or not.
+				$sendwp_email_forwarding = function_exists( 'sendwp_forwarding_enabled' ) && sendwp_forwarding_enabled() ? true : false;
+				
+				// Messages for connected or not.
+				$connected = __( 'Your site is connected to SendWP.', 'pmpro-mailpoet' ) . " <a href='https://app.sendwp.com/dashboard/' target='_blank' rel='nofollow noopener'>" . __( 'View Your SendWP Account', 'pmpro-mailpoet' ) . "</a>";
+				$disconnected = ' ' . sprintf( __( 'Please enable email sending inside %s.', 'pmpro-mailpoet' ), '<a href="' . admin_url('/tools.php?page=sendwp') . '">SendWP Settings</a>' );
+				?>
+				<p class="description" id="pmpro-sendwp-description"><?php echo $sendwp_email_forwarding ? $connected : $disconnected; ?></p>
+			<?php }
+		?>
+	<?php
+}
 
 /**
  * Show the "Opt-in Lists" setting.
