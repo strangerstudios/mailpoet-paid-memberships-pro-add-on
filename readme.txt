@@ -1,5 +1,5 @@
 === Paid Memberships Pro - Mailchimp Add On ===
-Contributors: strangerstudios
+Contributors: strangerstudios, andrewza, dlparker1005
 Tags: paid memberships pro, pmpro, mailpoet, email marketing
 Requires at least: 4
 Tested up to: 6.0.2
@@ -19,7 +19,7 @@ The settings page allows the site admin to specify which mailing lists to assign
 This plugin requires both Paid Memberships Pro and MailPoet to be installed.
 
 = Download, Install and Activate! =
-1. Upload the `pmpro-mailpoet` directory to the `/wp-content/plugins/` directory of your site.
+1. Upload the `MailPoet-Paid-Memberships-Pro-Add-on` directory to the `/wp-content/plugins/` directory of your site.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
 1. Navigate to Memberships > PMPro MailPoet to proceed with setup.
 
