@@ -92,5 +92,9 @@ Please visit [our support site at https://www.paidmembershipspro.com](http://www
 
 == Screenshots ==
 
+1. Auto-Subscribe Members to Lists Based on Their Membership Level.
+2. Assign a Default List for Non-members or Optional Opt-in Lists for Members-Only.
+3. Members Can Manage Subscriptions to Opt-in Lists at Checkout, Frontend Profile Edit, or the Admin Profile Screen.
+4. When Sending a Newsletter in MailPoet, Choose Your Member-Specific Lists for Paid Newsletter Functionality Like Substack.
 
 == Changelog ==
