@@ -36,3 +36,7 @@ Please visit [our support site at https://www.paidmembershipspro.com](http://www
 == Changelog ==
 = 3.0 - 2022-09-05 =
 * FEATURE: Complete overhaul to support MailPoet v3+
+
+## Upgrade Notice ##
+### 3.0 ###
+This is a complete overhaul of the plugin to work with MailPoet v3. It will no longer work with MailPoet v2 or earlier.
