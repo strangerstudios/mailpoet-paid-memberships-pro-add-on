@@ -2,7 +2,7 @@
 /*
  * Add Menu Item for "MailPoet".
  *
- * @since TBD
+ * @since 3.0
  */
 function pmpro_mailpoet_add_admin_page() {
 	if ( ! defined( 'PMPRO_VERSION' ) ) {
@@ -18,7 +18,7 @@ add_action( 'admin_menu', 'pmpro_mailpoet_add_admin_page', 20 );
 /**
  * Add MailPoet settings menu to admin bar.
  *
- * @since TBD
+ * @since 3.0
  */
 function pmpro_mailpoet_admin_bar_menu() {
 	global $wp_admin_bar;
@@ -42,7 +42,7 @@ add_action( 'admin_bar_menu', 'pmpro_mailpoet_admin_bar_menu', 1000 );
 /**
  * Render the MailPoet settings page.
  *
- * @since TBD
+ * @since 3.0
  */
 function pmpro_mailpoet_render_adminpage() {
 	?>
@@ -70,7 +70,7 @@ function pmpro_mailpoet_render_adminpage() {
 /*
  * Set up MailPoet settings.
  *
- * @since TBD
+ * @since 3.0
  */
 function pmpro_mailpoet_admin_init() {
 	register_setting( 'pmpro_mailpoet_options', 'pmpro_mailpoet_options', 'pmpro_mailpoet_options_validate' );
@@ -95,7 +95,7 @@ add_action( 'admin_init', 'pmpro_mailpoet_admin_init' );
 /**
  * Validate the MailPoet settings on save.
  *
- * @since TBD
+ * @since 3.0
  *
  * @param array $input The input to validate.
  * @return array The validated input.
@@ -132,7 +132,7 @@ function pmpro_mailpoet_options_validate( $input ) {
 /**
  * Show any warnings on PMPro MailPoet settings page.
  *
- * @since TBD
+ * @since 3.0
  */
 function pmpro_mailpoet_admin_warnings() {
 	$levels     = pmpro_mailpoet_get_all_levels();
@@ -165,7 +165,7 @@ function pmpro_mailpoet_admin_warnings() {
 /**
  * Add description for Membership Lists section.
  *
- * @since TBD
+ * @since 3.0
  */
 function pmpro_mailpoet_section_membership_lists() {
 	?>
@@ -176,7 +176,7 @@ function pmpro_mailpoet_section_membership_lists() {
 /**
  * Show the membership lists setting for the given level.
  *
- * @since TBD
+ * @since 3.0
  *
  * @param object $level The level to show the lists for.
  */
@@ -187,7 +187,7 @@ function pmpro_mailpoet_option_memberships_lists( $level ) {
 /**
  * Show the "Non-Member Lists" setting.
  *
- * @since TBD
+ * @since 3.0
  */
 function pmpro_mailpoet_option_nonmember_lists() {
 	pmpro_mailpoet_settings_build_list_checkboxes_helper( 'nonmember_lists' );
@@ -197,7 +197,7 @@ function pmpro_mailpoet_option_nonmember_lists() {
 /**
  * Show the "Unsubscribe on Level Change" setting.
  *
- * @since TBD
+ * @since 3.0
  */
 function pmpro_mailpoet_option_unsubscribe_on_level_change() {
 	$options = pmpro_mailpoet_get_options();
@@ -213,7 +213,7 @@ function pmpro_mailpoet_option_unsubscribe_on_level_change() {
 /**
  * Add SendWP connectivity settings callback. Copied  logic from PMPro core.
  *
- * @since TBD
+ * @since 3.0
  */
 function pmpro_mailpoet_sendwp_cta() {
 	?>			
@@ -255,7 +255,7 @@ function pmpro_mailpoet_sendwp_cta() {
 /**
  * Show the "Opt-in Lists" setting.
  *
- * @since TBD
+ * @since 3.0
  */
 function pmpro_mailpoet_option_opt_in_lists() {
 	pmpro_mailpoet_settings_build_list_checkboxes_helper( 'opt-in_lists' );
@@ -266,7 +266,7 @@ function pmpro_mailpoet_option_opt_in_lists() {
 /**
  * Helper function to show checkboxes for MailPoet lists.
  *
- * @since TBD
+ * @since 3.0
  *
  * @param string $option_name The name of the option to show the checkboxes for.
  */

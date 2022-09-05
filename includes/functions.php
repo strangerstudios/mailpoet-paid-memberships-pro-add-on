@@ -3,7 +3,7 @@
 /**
  * Get the options for this plugin.
  *
- * @since TBD
+ * @since 3.0
  *
  * @return array
  */
@@ -20,7 +20,7 @@ function pmpro_mailpoet_get_options() {
 /**
  * Get all PMPro levels.
  *
- * @since TBD
+ * @since 3.0
  *
  * @return array
  */

@@ -2,8 +2,8 @@
 Contributors: strangerstudios
 Tags: paid memberships pro, pmpro, mailpoet, email marketing
 Requires at least: 4
-Tested up to: 6
-Stable tag: TBD
+Tested up to: 6.0.2
+Stable tag: 3.0
 
 Add users and members to MailPoet lists based on their membership level and allow members to opt-in to specific audiences.
 
@@ -21,7 +21,7 @@ This plugin requires both Paid Memberships Pro and MailPoet to be installed.
 = Download, Install and Activate! =
 1. Upload the `pmpro-mailpoet` directory to the `/wp-content/plugins/` directory of your site.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
-1. Navigate to Memberships > MailPoet to proceed with setup.
+1. Navigate to Memberships > PMPro MailPoet to proceed with setup.
 
 == Frequently Asked Questions ==
 
@@ -33,7 +33,6 @@ Please post it in the issues section of GitHub and we'll fix it as soon as we ca
 
 Please visit [our support site at https://www.paidmembershipspro.com](http://www.paidmembershipspro.com/) for more documentation and our support forums.
 
-== Screenshots ==
-
-
 == Changelog ==
+= 3.0 - 2022-09-05 =
+* FEATURE: Complete overhaul to support MailPoet v3+

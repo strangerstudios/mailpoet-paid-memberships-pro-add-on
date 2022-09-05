@@ -3,7 +3,7 @@
 /**
  * Get the MailPoet API.
  *
- * @since TBD
+ * @since 3.0
  *
  * @return object|null MailPoet API object or null if not available.
  */
@@ -14,7 +14,7 @@ function pmpro_mailpoet_get_api() {
 /**
  * Get all MailPoet lists.
  *
- * @since TBD.
+ * @since 3.0
  *
  * @return array
  */
@@ -34,7 +34,7 @@ function pmpro_mailpoet_get_all_lists() {
 /**
  * Get the MailPoet Subsciber for a user.
  *
- * @since TBD
+ * @since 3.0
  *
  * @param int $user_id The user to get the Subscriber for.
  * @param null|array $updated_subscriber Pass a subscriber array to update the cache.
@@ -79,7 +79,7 @@ function pmpro_mailpoet_get_subscriber( $user_id, $updated_subscriber = null ) {
 /**
  * Get all MailPoet lists that a user is subscribed to.
  *
- * @since TBD.
+ * @since 3.0
  *
  * @param int $user_id The user to get lists for.
  * @return array An array of list ids that the user is subscribed to.
@@ -99,7 +99,7 @@ function pmpro_mailpoet_get_user_list_ids( $user_id ) {
 /**
  * Add user to MailPoet list.
  *
- * @since TBD.
+ * @since 3.0
  *
  * @param int $user_id The user to add to the list.
  * @param int[] $list_ids The list to add the user to.
@@ -122,7 +122,7 @@ function pmpro_mailpoet_add_user_to_lists( $user_id, $list_ids ) {
 /**
  * Remove user from MailPoet list.
  *
- * @since TBD.
+ * @since 3.0
  *
  * @param int $user_id The user to remove from the list.
  * @param int[] $list_ids The list to remove the user from.

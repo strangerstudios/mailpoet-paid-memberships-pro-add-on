@@ -3,7 +3,7 @@
 /**
  * Dispaly additional opt-in list fields on checkout
  *
- * @since TBD
+ * @since 3.0
  */
 function pmpro_mailpoet_additional_lists_on_checkout() {
 	// If no opt-in lists are set, bail.
@@ -53,7 +53,7 @@ add_action( 'pmpro_checkout_after_tos_fields', 'pmpro_mailpoet_additional_lists_
  * Preserve info when going off-site for payment w/offsite payment gateway (PayPal Express).
  * Sets Session variables.
  *
- * @since TBD
+ * @since 3.0
  */
 function pmpro_mailpoet_pmpro_paypalexpress_session_vars() {
 	if ( isset( $_REQUEST['pmpro_mailpoet_opt-in_lists_showing'] ) ) {
@@ -96,7 +96,7 @@ add_action( 'pmpro_show_user_profile', 'pmpro_mailpoet_show_optin_list_profile_f
 /**
  * Show opt-in mailing lists checkboxes.
  *
- * @since TBD
+ * @since 3.0
  *
  * @param int|null $user_id User to preset checkboxes for.
  */
@@ -142,7 +142,7 @@ function pmpro_mailpoet_show_optin_checkboxes( $user_id = null ) {
 /**
  * Save opt-in mailing lists checkboxes.
  *
- * @since TBD
+ * @since 3.0
  *
  * @param int $user_id User ID to save checkboxes for.
  */

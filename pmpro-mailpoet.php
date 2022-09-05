@@ -3,7 +3,7 @@
 Plugin Name: Paid Memberships Pro - MailPoet Add On
 Plugin URI: http://www.paidmembershipspro.com/pmpro-mailpoet/
 Description: Sync your WordPress users and members with MailPoet lists.
-Version: 0.1
+Version: 3.0
 Author: Stranger Studios
 Author URI: http://www.strangerstudios.com
 Text Domain: pmpro-mailpoet
@@ -46,7 +46,7 @@ add_action( 'admin_notices', 'pmpro_mailpoet_show_notice' );
 /**
  * Load the languages folder for translations.
  *
- * @since TBD
+ * @since 3.0
  */
 function pmpro_mailpoet_load_textdomain() {
 	load_plugin_textdomain( 'pmpro-mailpoet', false, basename( dirname( __FILE__ ) ) . '/languages' );
@@ -56,7 +56,7 @@ add_action( 'plugins_loaded', 'pmpro_mailpoet_load_textdomain' );
 /*
  * Load CSS, JS files.
  *
- * @since TBD
+ * @since 3.0
  */
 function pmpro_mailpoet_scripts() {
 	wp_enqueue_style( 'pmprorh_frontend', plugins_url( 'css/pmpromailpoet.css', PMPRO_MAILPOET_BASE_FILE ), null, '' );
@@ -67,7 +67,7 @@ add_action( 'wp_enqueue_scripts', 'pmpro_mailpoet_scripts' );
 /**
  * Add links to the plugin action links
  *
- * @since TBD
+ * @since 3.0
  *
  * @param $links (array) - The existing link array
  * @return array -- Array of links to use
@@ -84,7 +84,7 @@ add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'pmpro_mailpoe
 /**
  * Add links to the plugin row meta
  *
- * @since TBD
+ * @since 3.0
  *
  * @param $links - Links for plugin
  * @param $file - main plugin filename
