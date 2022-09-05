@@ -1,13 +1,14 @@
 <?php
 /*
-Plugin Name: Paid Memberships Pro - MailPoet Add On
-Plugin URI: http://www.paidmembershipspro.com/pmpro-mailpoet/
-Description: Sync your WordPress users and members with MailPoet lists.
-Version: 0.1
-Author: Stranger Studios
-Author URI: http://www.strangerstudios.com
-Text Domain: pmpro-mailpoet
-*/
+ Plugin Name: Paid Memberships Pro - MailPoet Add On
+ Plugin URI: https://www.paidmembershipspro.com/add-ons/mailpoet-integration/
+ Description: Automatically subscribe members to MailPoet lists or allow them to opt-in to specific MailPoet newsletters.
+ Version: 0.1
+ Author: Paid Memberships Pro
+ Author URI: https://www.paidmembershipspro.com
+ Text Domain: pmpro-mailpoet
+ Domain Path: /languages
+ */
 
 define( 'PMPRO_MAILPOET_BASE_FILE', __FILE__ );
 define( 'PMPRO_MAILPOET_DIR', dirname( __FILE__ ) );

@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 === Paid Memberships Pro - MailPoet Add On ===
 Contributors: strangerstudios, andrewza, dlparker1005, paidmembershipspro
 Tags: mailpoet, paid newsletter, private newsletter, pmpro, paid memberships pro, restrict content
 Requires at least: 5.2
 Tested up to: 6.0.1
-Stable tag: trunk 
+Stable tag: TBD
 License: GPLv2 or later 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -49,29 +48,9 @@ Want more information on paid email newsletters and members-only emails with Pai
 * The [Paid Memberships Pro](https://www.paidmembershipspro.com/?utm_source=wordpress-org&utm_medium=readme&utm_campaign=pmpro-mailpoet) official homepage.
 * The [MailPoet Integration for PMPro documentation page](https://www.paidmembershipspro.com/add-ons/mailpoet-integration/?utm_source=wordpress-org&utm_medium=readme&utm_campaign=pmpro-mailpoet).
 * Also follow PMPro on [Twitter](https://twitter.com/pmproplugin), [YouTube](https://www.youtube.com/channel/UCFtMIeYJ4_YVidi1aq9kl5g) & [Facebook](https://www.facebook.com/PaidMembershipsPro/).
-=======
-=== Paid Memberships Pro - Mailchimp Add On ===
-Contributors: strangerstudios
-Tags: paid memberships pro, pmpro, mailpoet, email marketing
-Requires at least: 4
-Tested up to: 6
-Stable tag: TBD
-
-Add users and members to MailPoet lists based on their membership level and allow members to opt-in to specific audiences.
-
-== Description ==
-
-Subscribe WordPress users and members to your MailPoet lists.
-
-This plugin offers extended functionality for [membership websites using the Paid Memberships Pro plugin](https://wordpress.org/plugins/paid-memberships-pro/) available for free in the WordPress plugin repository. 
-
-The settings page allows the site admin to specify which mailing lists to assign users and members to plus additional features  you may wish to adjust.
->>>>>>> bde149698d03cbf3b14cfe86e72f09f4415726aa
 
 == Installation ==
-This plugin requires both Paid Memberships Pro and MailPoet to be installed.
 
-<<<<<<< HEAD
 Note: You must have [Paid Memberships Pro](https://wordpress.org/plugins/paid-memberships-pro/) installed and activated on your site.
 
 ### Install PMPro MailPoet from within WordPress
@@ -109,21 +88,6 @@ Please post it in the issues section of GitHub and we'll fix it as soon as we ca
 
 = I need help installing, configuring, or customizing the plugin. =
 
-=======
-= Download, Install and Activate! =
-1. Upload the `pmpro-mailpoet` directory to the `/wp-content/plugins/` directory of your site.
-1. Activate the plugin through the 'Plugins' menu in WordPress.
-1. Navigate to Memberships > MailPoet to proceed with setup.
-
-== Frequently Asked Questions ==
-
-= I found a bug in the plugin. =
-
-Please post it in the issues section of GitHub and we'll fix it as soon as we can. Thanks for helping. [https://github.com/strangerstudios/MailPoet-Paid-Memberships-Pro-Add-on/issues](https://github.com/strangerstudios/MailPoet-Paid-Memberships-Pro-Add-on/issues)
-
-= I need help installing, configuring, or customizing the plugin. =
-
->>>>>>> bde149698d03cbf3b14cfe86e72f09f4415726aa
 Please visit [our support site at https://www.paidmembershipspro.com](http://www.paidmembershipspro.com/) for more documentation and our support forums.
 
 == Screenshots ==
