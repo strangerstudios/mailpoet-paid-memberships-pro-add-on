@@ -24,7 +24,7 @@ function pmpro_mailpoet_additional_lists_on_checkout() {
 		<hr />
 		<h3>
 			<span class="pmpro_checkout-h3-name">
-				<?php echo _n( 'Join our mailing list', 'Join our mailing lists', $options['opt-in_lists'], 'pmpro-mailpoet' ); ?>
+				<?php echo _n( 'Join Our Mailing List', 'Join Our Mailing Lists', $options['opt-in_lists'], 'pmpro-mailpoet' ); ?>
 			</span>
 		</h3>
 		<div class="pmpro_checkout-fields">
@@ -95,7 +95,7 @@ function pmpro_mailpoet_show_optin_list_profile_fields_frontend( $user ) {
 	// Show opt-in lists setting.
 	?>
 	<div class="pmpro_checkout_box-mailpoet-require-opt-in">
-		<h3><?php echo _n( 'Opt-in MailPoet List', 'Opt-in MailPoet Lists', $options['opt-in_lists'], 'pmpro-mailpoet' ); ?></h3>
+		<h3><?php echo _n( 'Join Our Mailing List', 'Join Our Mailing Lists', $options['opt-in_lists'], 'pmpro-mailpoet' ); ?></h3>
 		<div class="pmpro_member_profile_edit-fields">
 			<?php /*<label><?php esc_html_e( 'Mailing Lists', 'pmpro-mailpoet' ); ?></label>  */ ?>
 			<?php pmpro_mailpoet_show_optin_checkboxes( $user->ID ); ?>
