@@ -3,7 +3,7 @@
  Plugin Name: Paid Memberships Pro - MailPoet Add On
  Plugin URI: https://www.paidmembershipspro.com/add-ons/mailpoet-integration/
  Description: Automatically subscribe members to MailPoet lists or allow them to opt-in to specific MailPoet newsletters.
- Version: 0.1
+ Version: 3.0
  Author: Paid Memberships Pro
  Author URI: https://www.paidmembershipspro.com
  Text Domain: pmpro-mailpoet
