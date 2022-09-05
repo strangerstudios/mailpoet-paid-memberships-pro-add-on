@@ -1,5 +1,5 @@
 === Paid Memberships Pro - MailPoet Add On ===
-Contributors: wysija, sebd86 
+Contributors: strangerstudios, andrewza, dlparker1005, paidmembershipspro
 Tags: mailpoet, paid newsletter, private newsletter, pmpro, paid memberships pro, restrict content
 Requires at least: 5.2
 Tested up to: 6.0.1
