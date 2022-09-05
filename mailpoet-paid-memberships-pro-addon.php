@@ -1,28 +1,14 @@
 <?php
 /*
- * Plugin Name: MailPoet Paid Memberships Pro Add-on
- * Plugin URI: http://wordpress.org/plugins/mailpoet-paid-memberships-pro-add-on/
- * Description: Adds a checkbox on checkout page for your customers to subscribe to your MailPoet newsletters. 
- * Version: 1.0.0
- * Author: Sebs Studio
- * Author URI: http://www.sebs-studio.com
- * Author Email: sebastien@sebs-studio.com
- * Requires at least: 3.7.1
- * Tested up to: 3.8.1
- *
- * Text Domain: mailpoet_paid_memberships_pro_addon
- * Domain Path: /languages/
- * Network: false
- *
- * Copyright: (c) 2014 Sebs Studio. (sebastien@sebs-studio.com)
- *
- * License: GNU General Public License v3.0
- * License URI: http://www.gnu.org/licenses/gpl-3.0.html
- *
- * @package MailPoet_Paid_Memberships_Pro_Addon
- * @author Sebs Studio
- * @category Core
- */
+ Plugin Name: Paid Memberships Pro - MailPoet Add On
+ Plugin URI: https://www.paidmembershipspro.com/add-ons/mailpoet-integration/
+ Description: Automatically subscribe members to MailPoet lists or allow them to opt-in to specific MailPoet newsletters.
+ Version: 1.0.0
+ Author: Paid Memberships Pro
+ Author URI: https://www.paidmembershipspro.com
+ Text Domain: mailpoet_paid_memberships_pro_addon
+ Domain Path: /languages
+  */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 

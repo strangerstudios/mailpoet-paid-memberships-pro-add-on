@@ -1,63 +1,94 @@
-=== MailPoet Paid Memberships Pro Add-on ===
+=== Paid Memberships Pro - MailPoet Add On ===
 Contributors: wysija, sebd86 
-Tags: mailpoet, wysija, paid-memberships-pro, sebs studio, extension, add-on 
-Requires at least: 3.7.1 
-Tested up to: 3.8.1 
+Tags: mailpoet, paid newsletter, private newsletter, pmpro, paid memberships pro, restrict content
+Requires at least: 5.2
+Tested up to: 6.0.1
 Stable tag: trunk 
 License: GPLv2 or later 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
-Adds a checkbox on checkout page for your customers to subscribe to your MailPoet newsletters.
+Paid newsletters for WordPress. Automatically subscribe members to MailPoet lists or allow them to opt-in to specific MailPoet newsletters.
 
 == Description ==
 
-> This plugin requires <a href="http://wordpress.org/plugins/wysija-newsletters/" rel="nofollow">MailPoet plugin</a> and <a href="https://wordpress.org/plugins/paid-memberships-pro/" rel="nofollow">Paid Memberships Pro plugin</a>.
+This integration plugin is designed to support membership sites that use MailPoet to distribute free or paid email newsletters.
 
-Adds a checkbox on checkout page for your customers to subscribe to your MailPoet newsletters.
+### How the MailPoet Integration Works
 
-= Localization =
-* English (en_US) [Default] - always included. mailpoet-paid-memberships-pro-addon.pot file in language folder for translations.
+The MailPoet Integration for Paid Memberships Pro automatically subscribes members to assigned MailPoet lists by level. Members can also opt-in to specific lists as part of the membership checkout process.
 
-If you would like to do a translation for the plugin, you can do so via Transifex.  (https://www.transifex.com/projects/p/mailpoet-paid-memberships-pro-add-on/)
+When a user’s membership level is cancelled or expired, they are automatically added to your selected non-member list (for members who have cancelled or expired) and are appropriately tagged in MailPoet. This allows you to send premium email content only to your active members, by membership level.
 
-Simply select or add a language you want to translate in and I will attach the language in the next version release. You will need an account on Transifex to do this.
+> This plugin requires [MailPoet](https://wordpress.org/plugins/mailpoet/) and [Paid Memberships Pro](https://wordpress.org/plugins/paid-memberships-pro/).
 
-If you have done a translation via PoEdit, then you are welcome to send that also. To send your translation files contact me. (http://www.sebs-studio.com/contact/?contacting=Translations)
+[MailPoet](https://wordpress.org/plugins/mailpoet/) is an email marketing plugin and service that you can use directly inside your WordPress site. You can use the MailPoet drag-and-drop builder to design custom email newsletters, select subscribers, and distribute emails through the WordPress admin.
 
-I'll acknowledge your contribution here with either your full name or username given.
+### About Paid Memberships Pro
 
-= Documentation =
+[Paid Memberships Pro is a WordPress membership plugin](https://www.paidmembershipspro.com/?utm_source=wordpress-org&utm_medium=readme&utm_campaign=pmpro-mailpoet) that puts you in control. Create what you want and release in whatever format works best for your business.
 
-For all documentation on this plugin go to: https://github.com/seb86/MailPoet-Paid-Memberships-Pro-Add-on/wiki/
+* Courses & E-Learning
+* Private Podcasts
+* Premium Newsletters
+* Private Communities
+* Sell Physical & Digital Goods
 
-= Contributing =
+Paid Memberships Pro allows anyone to build a membership site—for free. Restrict content, accept payment, and manage subscriptions right from your WordPress admin.
 
-To contribute to the plugin, visit https://github.com/seb86/MailPoet-Paid-Memberships-Pro-Add-on/blob/master/CONTRIBUTING.md for details.
+Paid Memberships Pro is built "the WordPress way" with a lean core plugin and over 75 Add Ons to enhance every aspect of your membership site. Each business is different and we encourage customization. For our members we have a library of 300+ recipes to personalize your membership site.
+
+Paid Memberships Pro is the flagship product of Stranger Studios. We are a bootstrapped company which grows when membership sites like yours grow. That means we focus our entire company towards helping you succeed.
+
+[Try Paid Memberships Pro entirely for free on WordPress.org](https://wordpress.org/plugins/paid-memberships-pro/) and see why 100,000+ sites trust us to help them #GetPaid.
+
+### Read More
+
+Want more information on paid email newsletters and members-only emails with Paid Memberships Pro, MailPoet, and WordPress membership sites? Have a look at:
+
+* The [Paid Memberships Pro](https://www.paidmembershipspro.com/?utm_source=wordpress-org&utm_medium=readme&utm_campaign=pmpro-mailpoet) official homepage.
+* The [MailPoet Integration for PMPro documentation page](https://www.paidmembershipspro.com/add-ons/mailpoet-integration/?utm_source=wordpress-org&utm_medium=readme&utm_campaign=pmpro-mailpoet).
+* Also follow PMPro on [Twitter](https://twitter.com/pmproplugin), [YouTube](https://www.youtube.com/channel/UCFtMIeYJ4_YVidi1aq9kl5g) & [Facebook](https://www.facebook.com/PaidMembershipsPro/).
 
 == Installation ==
 
-= Minimum Requirements =
+Note: You must have [Paid Memberships Pro](https://wordpress.org/plugins/paid-memberships-pro/) installed and activated on your site.
 
-* MailPoet
-* Paid Memberships Pro
+### Install PMPro MailPoet from within WordPress
 
-= Automatic installation =
+1. Visit the plugins page within your dashboard and select "Add New"
+1. Search for "PMPro MailPoet"
+1. Locate this plugin and click "Install"
+1. Activate "Paid Memberships Pro - MailPoet Add On" through the "Plugins" menu in WordPress
+1. Go to "after activation" below.
 
-Automatic installation is the easiest option as WordPress handles the file transfers itself and you don't even need to leave your web browser. To do an automatic install of MailPoet Paid Memberships Pro Add-on, log in to your WordPress admin panel, navigate to the Plugins menu and click Add New.
+### Install PMPro MailPoet Manually
 
-In the search field type "MailPoet Paid Memberships Pro Add-on" and click Search Plugins. Once you've found my plugin extension you can view details about it such as the the point release, rating and description. Most importantly of course, you can install it by simply clicking Install Now. After clicking that link you will be asked if you're sure you want to install the plugin. Click yes and WordPress will automatically complete the installation.
+1. Upload the `MailPoet-Paid-Memberships-Pro-Add-on` folder to the `/wp-content/plugins/` directory
+1. Activate "Paid Memberships Pro - MailPoet Integration" through the "Plugins" menu in WordPress
+1. Go to "after activation" below.
 
-= Manual installation =
+### After Activation: Configure Membership Settings for MailPoet
+Below is a description of the various settings available in the plugin. Navigate to Memberships > MailPoet in the WordPress admin to configure the plugin for your site
 
-The manual installation method involves downloading my plugin and uploading it to your web-server via your favourite FTP application.
+* Non-Members List: Users are automatically subscribed to non-member lists when they register without a membership level or when their membership level is removed.
+* Opt-In List: Give users the option to subscribe to additional lists at checkout and on their profile page.
+* Membership Lists: Assign MailPoet subscriptions to each membership. Members are automatically subscribed to these lists during checkout or after membership level changes. You can add members to a single list or multiple lists depending on your needs.
+* Unsubscribe On Level Change? Choose whether subscribers should be removed from their level lists when their membership changes. This setting unsubscribes members from their current level’s list when they cancel, expire, or otherwise change their membership level.
 
-1. Download the plugin file to your computer and unzip it
-2. Using an FTP program, or your hosting control panel, upload the unzipped plugin folder to your WordPress installation's wp-content/plugins/ directory.
-3. Activate the plugin from the Plugins menu within the WordPress admin.
+### Import Current Members to MailPoet
+This integration plugin does not perform a retroactive update of all membership levels > subscriber list settings. If you want to start using MailPoet and you already have members, you must complete a one-time import to sync MailPoet subscribers and members.
 
-= Upgrading =
+[View the Guide: How to Import Your PMPro Members List to MailPoet Subscriber Lists »](https://www.paidmembershipspro.com/import-members-to-mailpoet-lists/)
 
-Automatic updates should work like a charm; as always though, ensure you backup your site just in case.
+== Frequently Asked Questions ==
+
+= I found a bug in the plugin. =
+
+Please post it in the issues section of GitHub and we'll fix it as soon as we can. Thanks for helping. [https://github.com/strangerstudios/MailPoet-Paid-Memberships-Pro-Add-on/issues](https://github.com/strangerstudios/MailPoet-Paid-Memberships-Pro-Add-on/issues)
+
+= I need help installing, configuring, or customizing the plugin. =
+
+Please visit [our support site at https://www.paidmembershipspro.com](http://www.paidmembershipspro.com/) for more documentation and our support forums.
 
 == Screenshots ==
 
