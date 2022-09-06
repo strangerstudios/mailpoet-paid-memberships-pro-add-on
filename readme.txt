@@ -3,7 +3,7 @@ Contributors: strangerstudios, andrewza, dlparker1005, paidmembershipspro
 Tags: mailpoet, paid newsletter, private newsletter, pmpro, paid memberships pro, restrict content
 Requires at least: 5.2
 Tested up to: 6.0.2
-Stable tag: 3.0
+Stable tag: 3.1
 License: GPLv2 or later 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -98,6 +98,11 @@ Please visit [our support site at https://www.paidmembershipspro.com](http://www
 4. When Sending a Newsletter in MailPoet, Choose Your Member-Specific Lists for Paid Newsletter Functionality Like Substack.
 
 == Changelog ==
+= 3.1 - 2022-09-06 =
+* ENHANCEMENT: Fixed wording at checkout for opt-in lists.
+* ENHANCEMENT: Removed trashed lists from the settings page. Only show published lists.
+* ENHANCEMENT: Improved localization and support translatability. 
+
 = 3.0 - 2022-09-05 =
 * FEATURE: Complete overhaul to support MailPoet v3+
 

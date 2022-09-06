@@ -3,7 +3,7 @@
 Plugin Name: Paid Memberships Pro - MailPoet Add On
 Plugin URI: http://www.paidmembershipspro.com/pmpro-mailpoet/
 Description: Sync your WordPress users and members with MailPoet lists.
-Version: 3.0
+Version: 3.1
 Author: Stranger Studios
 Author URI: http://www.strangerstudios.com
 Text Domain: mailpoet-paid-memberships-pro-add-on
