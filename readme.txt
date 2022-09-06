@@ -90,10 +90,17 @@ Please post it in the issues section of GitHub and we'll fix it as soon as we ca
 
 Please visit [our support site at https://www.paidmembershipspro.com](http://www.paidmembershipspro.com/) for more documentation and our support forums.
 
+== Screenshots ==
+
+1. Auto-Subscribe Members to Lists Based on Their Membership Level.
+2. Assign a Default List for Non-members or Optional Opt-in Lists for Members-Only.
+3. Members Can Manage Subscriptions to Opt-in Lists at Checkout, Frontend Profile Edit, or the Admin Profile Screen.
+4. When Sending a Newsletter in MailPoet, Choose Your Member-Specific Lists for Paid Newsletter Functionality Like Substack.
+
 == Changelog ==
 = 3.0 - 2022-09-05 =
 * FEATURE: Complete overhaul to support MailPoet v3+
 
-## Upgrade Notice ##
-### 3.0 ###
+== Upgrade Notice ==
+= 3.0 =
 This is a complete overhaul of the plugin to work with MailPoet v3. It will no longer work with MailPoet v2 or earlier.

@@ -280,22 +280,19 @@ function pmpro_mailpoet_settings_build_list_checkboxes_helper( $option_name ) {
 		$selected_lists = array();
 	}
 
-	if ( ! empty( $pmpro_mailpoet_lists ) ) {
+	if ( ! empty( $pmpro_mailpoet_lists ) ) { ?>
+		<div class="pmpro_checkbox_box <?php echo ( count( $pmpro_mailpoet_lists ) > 6 ) ? 'pmpro_scrollable' : ''; ?>">
+		<?php
+			foreach ( $pmpro_mailpoet_lists as $list ) {
+				$checked_modifier = in_array( $list['id'], $selected_lists ) ? ' checked' : '';
+				echo '<div class="pmpro_clickable">';
+				echo( "<input type='checkbox' name='pmpro_mailpoet_options[" . esc_attr( $option_name ) . "][]' value='" . esc_attr( $list['id'] ) . "' id='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $list['id'] ) . "'" . $checked_modifier . '>' );
+				echo( "<label for='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $list['id'] ) . "' class='pmpromailpoet-checkbox-label'>" . esc_html( $list['name'] ) . '</label>' );
+				echo '</div>';
+			}
 		?>
-		<div 
-		<?php
-		if ( count( $pmpro_mailpoet_lists ) > 5 ) {
-			?>
-			class="pmpromailpoet-checkbox-list-scrollable"<?php } ?>>
-		<?php
-		foreach ( $pmpro_mailpoet_lists as $list ) {
-			$checked_modifier = in_array( $list['id'], $selected_lists ) ? ' checked' : '';
-			echo( "<input type='checkbox' name='pmpro_mailpoet_options[" . esc_attr( $option_name ) . "][]' value='" . esc_attr( $list['id'] ) . "' id='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $list['id'] ) . "'" . $checked_modifier . '>' );
-			echo( "<label for='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $list['id'] ) . "' class='pmpromailpoet-checkbox-label'>" . esc_html( $list['name'] ) . '</label><br>' );
-		}
-		echo '</div>';
-	} else {
+		</div> <!-- end pmpro_checkbox_box -->
+	<?php } else {
 		esc_html_e( 'No lists found.', 'pmpro-mailpoet' );
 	}
-
 }

@@ -53,17 +53,6 @@ function pmpro_mailpoet_load_textdomain() {
 }
 add_action( 'plugins_loaded', 'pmpro_mailpoet_load_textdomain' );
 
-/*
- * Load CSS, JS files.
- *
- * @since 3.0
- */
-function pmpro_mailpoet_scripts() {
-	wp_enqueue_style( 'pmprorh_frontend', plugins_url( 'css/pmpromailpoet.css', PMPRO_MAILPOET_BASE_FILE ), null, '' );
-}
-add_action( 'admin_enqueue_scripts', 'pmpro_mailpoet_scripts' );
-add_action( 'wp_enqueue_scripts', 'pmpro_mailpoet_scripts' );
-
 /**
  * Add links to the plugin action links
  *
