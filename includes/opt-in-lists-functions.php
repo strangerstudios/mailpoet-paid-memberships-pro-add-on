@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Dispaly additional opt-in list fields on checkout
  *
@@ -20,31 +19,20 @@ function pmpro_mailpoet_additional_lists_on_checkout() {
 
 	// Show the opt-in lists at checkout.
 	?>
-	<table id="pmpro_mailing_lists" class="pmpro_checkout top1em" width="100%" cellpadding="0" cellspacing="0" border="0">
-		<thead>
-		<tr>
-			<th>
-				<?php
-				if ( count( $options['opt-in_lists'] ) === 1 ) {
-					esc_html_e( 'Join our mailing list.', 'pmpro-mailpoet' );
-				} else {
-					esc_html_e( 'Join our mailing lists.', 'pmpro-mailpoet' );
-				}
-				?>
-			</th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr class="odd">
-			<td>
-				<?php
+	<div id="pmpro_checkout_box-mailpoet-require-opt-in" class="pmpro_checkout">
+		<hr />
+		<h3>
+			<span class="pmpro_checkout-h3-name">
+				<?php echo _n( 'Join Our Mailing List', 'Join Our Mailing Lists', count( $options['opt-in_lists'] ), 'mailpoet-paid-memberships-pro-add-on' ); ?>
+			</span>
+		</h3>
+		<div class="pmpro_checkout-fields">
+			<?php
 				global $current_user;
 				pmpro_mailpoet_show_optin_checkboxes( empty( $current_user->ID ) ? null : $current_user->ID );
-				?>
-			</td>
-		</tr>
-		</tbody>
-	</table>
+			?>
+		</div> <!-- end pmpro_checkout-fields -->
+	</div> <!-- end pmpro_checkout_box-name -->
 	<?php
 }
 add_action( 'pmpro_checkout_after_tos_fields', 'pmpro_mailpoet_additional_lists_on_checkout' );
@@ -75,12 +63,12 @@ function pmpro_mailpoet_show_optin_list_profile_fields( $user ) {
 
 	// Show opt-in lists setting.
 	?>
-		<h3><?php esc_html_e( 'Opt-in MailPoet Lists', 'pmpro-mailpoet' ); ?></h3>
+		<h3><?php esc_html_e( 'Opt-in MailPoet Lists', 'mailpoet-paid-memberships-pro-add-on' ); ?></h3>
 
 		<table class="form-table">
 			<tr>
 				<th>
-					<label><?php esc_html_e( 'Mailing Lists', 'pmpro-mailpoet' ); ?></label>
+					<label><?php esc_html_e( 'Mailing Lists', 'mailpoet-paid-memberships-pro-add-on' ); ?></label>
 				</th>
 				<td>
 					<?php pmpro_mailpoet_show_optin_checkboxes( $user->ID ); ?>
@@ -91,7 +79,29 @@ function pmpro_mailpoet_show_optin_list_profile_fields( $user ) {
 }
 add_action( 'show_user_profile', 'pmpro_mailpoet_show_optin_list_profile_fields', 12 );
 add_action( 'edit_user_profile', 'pmpro_mailpoet_show_optin_list_profile_fields', 12 );
-add_action( 'pmpro_show_user_profile', 'pmpro_mailpoet_show_optin_list_profile_fields', 12 );
+
+
+/*
+	Add opt-in Lists to the user profile/edit user page.
+*/
+function pmpro_mailpoet_show_optin_list_profile_fields_frontend( $user ) {
+	// If no opt-in lists are set, bail.
+	$options = pmpro_mailpoet_get_options();
+	if ( empty( $options['opt-in_lists'] ) ) {
+		return;
+	}
+
+	// Show opt-in lists setting.
+	?>
+	<div class="pmpro_checkout_box-mailpoet-require-opt-in">
+		<h3><?php echo _n( 'Join Our Mailing List', 'Join Our Mailing Lists', count( $options['opt-in_lists'] ), 'mailpoet-paid-memberships-pro-add-on' ); ?></h3>
+		<div class="pmpro_member_profile_edit-fields">
+			<?php pmpro_mailpoet_show_optin_checkboxes( $user->ID ); ?>
+		</div> <!-- end pmpro_member_profile_edit-fields -->
+	</div> <!-- end pmpro_checkout_box_mailpoet-require-opt-in -->
+	<?php
+}
+add_action( 'pmpro_show_user_profile', 'pmpro_mailpoet_show_optin_list_profile_fields_frontend', 12 );
 
 /**
  * Show opt-in mailing lists checkboxes.
@@ -131,12 +141,18 @@ function pmpro_mailpoet_show_optin_checkboxes( $user_id = null ) {
 	}
 
 	// Show opt-in lists setting.
+	echo '<div class="pmpro_checkout-field pmpro_checkout-field-checkbox_grouped">';
 	echo '<input type="hidden" name="pmpro_mailpoet_opt-in_lists_showing" value="1" />';
+	echo '<ul>';
 	foreach ( $optin_lists as $optin_list ) {
 		$checked = in_array( $optin_list['id'], $user_list_ids );
+		echo '<li>';
 		echo "<input type='checkbox' name='pmpro_mailpoet_opt-in_lists[]' value='" . esc_attr( $optin_list['id'] ) . "' id='pmpro_mailpoet_opt-in_lists_" . esc_attr( $optin_list['id'] ) . "'" . checked( $checked, true, false ) . '>';
-		echo "<label for='pmpro_mailpoet_opt-in_lists_" . esc_attr( $optin_list['id'] ) . "' class='pmpromailpoet-checkbox-label'>" . esc_html( $optin_list['name'] ) . '</label><br>';
+		echo " <label for='pmpro_mailpoet_opt-in_lists_" . esc_attr( $optin_list['id'] ) . "' class='pmpro_label-inline pmpromailpoet-checkbox-label'>" . esc_html( $optin_list['name'] ) . '</label>';
+		echo '</li>';
 	}
+	echo '</ul>';
+	echo '</div>';
 }
 
 /**

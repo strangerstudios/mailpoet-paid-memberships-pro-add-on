@@ -10,7 +10,7 @@ function pmpro_mailpoet_add_admin_page() {
 	}
 
 	if ( version_compare( PMPRO_VERSION, '2.0' ) >= 0 ) {
-		add_submenu_page( 'pmpro-dashboard', __( 'MailPoet', 'pmpro-mailpoet' ), __( 'PMPro MailPoet', 'pmpro-mailpoet' ), 'manage_options', 'pmpro-mailpoet', 'pmpro_mailpoet_render_adminpage' );
+		add_submenu_page( 'pmpro-dashboard', __( 'MailPoet', 'mailpoet-paid-memberships-pro-add-on' ), __( 'PMPro MailPoet', 'mailpoet-paid-memberships-pro-add-on' ), 'manage_options', 'pmpro-mailpoet', 'pmpro_mailpoet_render_adminpage' );
 	}
 }
 add_action( 'admin_menu', 'pmpro_mailpoet_add_admin_page', 20 );
@@ -29,7 +29,7 @@ function pmpro_mailpoet_admin_bar_menu() {
 		array(
 			'id'     => 'pmpro-mailpoet',
 			'parent' => 'paid-memberships-pro',
-			'title'  => esc_html__( 'MailPoet', 'pmpro-mailpoet' ),
+			'title'  => esc_html__( 'MailPoet', 'mailpoet-paid-memberships-pro-add-on' ),
 			'href'   => get_admin_url(
 				null,
 				'/admin.php?page=pmpro-mailpoet'
@@ -48,7 +48,7 @@ function pmpro_mailpoet_render_adminpage() {
 	?>
 	<div class="wrap">
 		<div id="icon-options-general" class="icon32"><br></div>
-		<h2><?php esc_html_e( 'Paid Memberships Pro - MailPoet Integration Settings', 'pmpro-mailpoet' ); ?></h2>
+		<h2><?php esc_html_e( 'Paid Memberships Pro - MailPoet Integration Settings', 'mailpoet-paid-memberships-pro-add-on' ); ?></h2>
 
 		<?php pmpro_mailpoet_admin_warnings(); ?>
 		<form action="options.php" method="post">
@@ -59,7 +59,7 @@ function pmpro_mailpoet_render_adminpage() {
 
 			<div class="bottom-buttons">
 				<input type="hidden" name="pmpro_mailpoet_options[set]" value="1"/>
-				<input type="submit" name="submit" class="button-primary" value="<?php esc_attr_e( 'Save Settings', 'pmpro-mailpoet' ); ?>">
+				<input type="submit" name="submit" class="button-primary" value="<?php esc_attr_e( 'Save Settings', 'mailpoet-paid-memberships-pro-add-on' ); ?>">
 			</div>
 
 		</form>
@@ -76,19 +76,19 @@ function pmpro_mailpoet_admin_init() {
 	register_setting( 'pmpro_mailpoet_options', 'pmpro_mailpoet_options', 'pmpro_mailpoet_options_validate' );
 	
 	// General Settings.
-	add_settings_section( 'pmpro_mailpoet_section_opt_in_lists', esc_html__( 'General Settings', 'pmpro-mailpoet' ), '', 'pmpro_mailpoet_options' );
-	add_settings_field( 'pmpro_mailpoet_option_nonmember_lists', esc_html__( 'Non-Member Lists', 'pmpro-mailpoet' ), 'pmpro_mailpoet_option_nonmember_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
-	add_settings_field( 'pmpro_mailpoet_option_opt_in_lists', esc_html__( 'Opt-in Lists', 'pmpro-mailpoet' ), 'pmpro_mailpoet_option_opt_in_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
+	add_settings_section( 'pmpro_mailpoet_section_opt_in_lists', esc_html__( 'General Settings', 'mailpoet-paid-memberships-pro-add-on' ), '', 'pmpro_mailpoet_options' );
+	add_settings_field( 'pmpro_mailpoet_option_nonmember_lists', esc_html__( 'Non-Member Lists', 'mailpoet-paid-memberships-pro-add-on' ), 'pmpro_mailpoet_option_nonmember_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
+	add_settings_field( 'pmpro_mailpoet_option_opt_in_lists', esc_html__( 'Opt-in Lists', 'mailpoet-paid-memberships-pro-add-on' ), 'pmpro_mailpoet_option_opt_in_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
 
 	//SendWP Email Deliverability.
 	add_settings_field( 'pmpro_mailpoet_sendwp_cta', 'Email Deliverability', 'pmpro_mailpoet_sendwp_cta', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
 
-	add_settings_section( 'pmpro_mailpoet_section_membership_lists', esc_html__( 'Membership Lists', 'pmpro-mailpoet' ), 'pmpro_mailpoet_section_membership_lists', 'pmpro_mailpoet_options' );
+	add_settings_section( 'pmpro_mailpoet_section_membership_lists', esc_html__( 'Membership Lists', 'mailpoet-paid-memberships-pro-add-on' ), 'pmpro_mailpoet_section_membership_lists', 'pmpro_mailpoet_options' );
 	$levels = pmpro_mailpoet_get_all_levels();
 	foreach ( $levels as $level ) {
 		add_settings_field( 'pmpro_mailpoet_option_memberships_lists_' . (int) $level->id, esc_html( $level->name ), 'pmpro_mailpoet_option_memberships_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists', array( $level ) );
 	}
-	add_settings_field( 'pmpro_mailpoet_option_unsubscribe_on_level_change', esc_html__( 'Unsubscribe on Level Change?', 'pmpro-mailpoet' ), 'pmpro_mailpoet_option_unsubscribe_on_level_change', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists' );	
+	add_settings_field( 'pmpro_mailpoet_option_unsubscribe_on_level_change', esc_html__( 'Unsubscribe on Level Change?', 'mailpoet-paid-memberships-pro-add-on' ), 'pmpro_mailpoet_option_unsubscribe_on_level_change', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists' );	
 }
 add_action( 'admin_init', 'pmpro_mailpoet_admin_init' );
 
@@ -156,7 +156,7 @@ function pmpro_mailpoet_admin_warnings() {
 	if ( $show_error ) {
 		?>
 		<div class="notice notice-error">
-			<p><strong><?php esc_html_e( 'Membership lists lists cannot also be set as opt-in lists.', 'pmpro-mailpoet' ); ?></strong></p>
+			<p><strong><?php esc_html_e( 'Membership lists lists cannot also be set as opt-in lists.', 'mailpoet-paid-memberships-pro-add-on' ); ?></strong></p>
 		</div>
 		<?php
 	}
@@ -169,7 +169,7 @@ function pmpro_mailpoet_admin_warnings() {
  */
 function pmpro_mailpoet_section_membership_lists() {
 	?>
-	<p><?php esc_html_e( 'Users will automatically be subscribed to selected lists when they receive the corresponding membership level.', 'pmpro-mailpoet' ); ?></p>
+	<p><?php esc_html_e( 'Users will automatically be subscribed to selected lists when they receive the corresponding membership level.', 'mailpoet-paid-memberships-pro-add-on' ); ?></p>
 	<?php
 }
 
@@ -191,7 +191,7 @@ function pmpro_mailpoet_option_memberships_lists( $level ) {
  */
 function pmpro_mailpoet_option_nonmember_lists() {
 	pmpro_mailpoet_settings_build_list_checkboxes_helper( 'nonmember_lists' );
-	echo '<p class="description">' . esc_html__( 'Users will automatically be subscribed to non-member lists when they register without purchasing a membership level or when their membership level is removed.', 'pmpro-mailpoet' ) . '</p>';
+	echo '<p class="description">' . esc_html__( 'Users will automatically be subscribed to non-member lists when they register without purchasing a membership level or when their membership level is removed.', 'mailpoet-paid-memberships-pro-add-on' ) . '</p>';
 }
 
 /**
@@ -204,8 +204,8 @@ function pmpro_mailpoet_option_unsubscribe_on_level_change() {
 
 	?>
 	<select name="pmpro_mailpoet_options[unsubscribe_on_level_change]">
-		<option value="0" <?php selected( $options['unsubscribe_on_level_change'], 0 ); ?>><?php esc_html_e( 'No.', 'pmpro-mailpoet' ); ?></option>
-		<option value="1" <?php selected( $options['unsubscribe_on_level_change'], 1 ); ?>><?php esc_html_e( 'Yes, unsubscribe from old membership lists on level change.', 'pmpro-mailpoet' ); ?></option>
+		<option value="0" <?php selected( $options['unsubscribe_on_level_change'], 0 ); ?>><?php esc_html_e( 'No.', 'mailpoet-paid-memberships-pro-add-on' ); ?></option>
+		<option value="1" <?php selected( $options['unsubscribe_on_level_change'], 1 ); ?>><?php esc_html_e( 'Yes, unsubscribe from old membership lists on level change.', 'mailpoet-paid-memberships-pro-add-on' ); ?></option>
 	</select>
 	<?php
 }
@@ -227,7 +227,7 @@ function pmpro_mailpoet_sendwp_cta() {
 				),
 				'em' => array(),
 			);
-			echo sprintf( wp_kses( __( 'If you are having issues with email delivery from your server, <a href="%s" title="Paid Memberships Pro - Subscription Delays Add On" target="_blank" rel="nofollow noopener">please read our email troubleshooting guide</a>. As an alternative, Paid Memberships Pro offers built-in integration for SendWP. <em>Optional: SendWP is a third-party service for transactional email in WordPress. <a href="%s" title="Documentation on SendWP and Paid Memberships Pro" target="_blank" rel="nofollow noopener">Click here to learn more about SendWP and Paid Memberships Pro</a></em>.', 'pmpro-mailpoet' ), $allowed_email_troubleshooting_html ), 'https://www.paidmembershipspro.com/troubleshooting-email-issues-sending-sent-spam-delivery-delays/?utm_source=plugin&utm_medium=pmpro-emailsettings&utm_campaign=blog&utm_content=email-troubleshooting', 'https://www.paidmembershipspro.com/documentation/member-communications/email-delivery-sendwp/?utm_source=plugin&utm_medium=pmpro-emailsettings&utm_campaign=documentation&utm_content=sendwp' );
+			echo sprintf( wp_kses( __( 'If you are having issues with email delivery from your server, <a href="%s" title="Paid Memberships Pro - Subscription Delays Add On" target="_blank" rel="nofollow noopener">please read our email troubleshooting guide</a>. As an alternative, Paid Memberships Pro offers built-in integration for SendWP. <em>Optional: SendWP is a third-party service for transactional email in WordPress. <a href="%s" title="Documentation on SendWP and Paid Memberships Pro" target="_blank" rel="nofollow noopener">Click here to learn more about SendWP and Paid Memberships Pro</a></em>.', 'mailpoet-paid-memberships-pro-add-on' ), $allowed_email_troubleshooting_html ), 'https://www.paidmembershipspro.com/troubleshooting-email-issues-sending-sent-spam-delivery-delays/?utm_source=plugin&utm_medium=pmpro-emailsettings&utm_campaign=blog&utm_content=email-troubleshooting', 'https://www.paidmembershipspro.com/documentation/member-communications/email-delivery-sendwp/?utm_source=plugin&utm_medium=pmpro-emailsettings&utm_campaign=documentation&utm_content=sendwp' );
 		?></p>
 
 		<?php
@@ -235,16 +235,16 @@ function pmpro_mailpoet_sendwp_cta() {
 			$sendwp_connected = function_exists( 'sendwp_client_connected' ) && sendwp_client_connected() ? true : false;
 
 			if ( ! $sendwp_connected ) { ?>
-				<p><button id="pmpro-sendwp-connect" class="button"><?php esc_html_e( 'Connect to SendWP', 'pmpro-mailpoet' ); ?></button></p>
+				<p><button id="pmpro-sendwp-connect" class="button"><?php esc_html_e( 'Connect to SendWP', 'mailpoet-paid-memberships-pro-add-on' ); ?></button></p>
 			<?php } else { ?>
-				<p><button id="pmpro-sendwp-disconnect" class="button-primary"><?php esc_html_e( 'Disconnect from SendWP', 'pmpro-mailpoet' ); ?></button></p>
+				<p><button id="pmpro-sendwp-disconnect" class="button-primary"><?php esc_html_e( 'Disconnect from SendWP', 'mailpoet-paid-memberships-pro-add-on' ); ?></button></p>
 				<?php
 				// Update SendWP status to see if email forwarding is enabled or not.
 				$sendwp_email_forwarding = function_exists( 'sendwp_forwarding_enabled' ) && sendwp_forwarding_enabled() ? true : false;
 				
 				// Messages for connected or not.
-				$connected = __( 'Your site is connected to SendWP.', 'pmpro-mailpoet' ) . " <a href='https://app.sendwp.com/dashboard/' target='_blank' rel='nofollow noopener'>" . __( 'View Your SendWP Account', 'pmpro-mailpoet' ) . "</a>";
-				$disconnected = ' ' . sprintf( __( 'Please enable email sending inside %s.', 'pmpro-mailpoet' ), '<a href="' . admin_url('/tools.php?page=sendwp') . '">SendWP Settings</a>' );
+				$connected = __( 'Your site is connected to SendWP.', 'mailpoet-paid-memberships-pro-add-on' ) . " <a href='https://app.sendwp.com/dashboard/' target='_blank' rel='nofollow noopener'>" . __( 'View Your SendWP Account', 'mailpoet-paid-memberships-pro-add-on' ) . "</a>";
+				$disconnected = ' ' . sprintf( __( 'Please enable email sending inside %s.', 'mailpoet-paid-memberships-pro-add-on' ), '<a href="' . admin_url('/tools.php?page=sendwp') . '">SendWP Settings</a>' );
 				?>
 				<p class="description" id="pmpro-sendwp-description"><?php echo $sendwp_email_forwarding ? $connected : $disconnected; ?></p>
 			<?php }
@@ -259,7 +259,7 @@ function pmpro_mailpoet_sendwp_cta() {
  */
 function pmpro_mailpoet_option_opt_in_lists() {
 	pmpro_mailpoet_settings_build_list_checkboxes_helper( 'opt-in_lists' );
-	echo '<p class="description">' . esc_html__( 'Give users the option to subscribe to additional lists at checkout and on their profile page.', 'pmpro-mailpoet' ) . '</p>';
+	echo '<p class="description">' . esc_html__( 'Give users the option to subscribe to additional lists at checkout and on their profile page.', 'mailpoet-paid-memberships-pro-add-on' ) . '</p>';
 
 }
 
@@ -280,22 +280,19 @@ function pmpro_mailpoet_settings_build_list_checkboxes_helper( $option_name ) {
 		$selected_lists = array();
 	}
 
-	if ( ! empty( $pmpro_mailpoet_lists ) ) {
+	if ( ! empty( $pmpro_mailpoet_lists ) ) { ?>
+		<div class="pmpro_checkbox_box <?php echo ( count( $pmpro_mailpoet_lists ) > 6 ) ? 'pmpro_scrollable' : ''; ?>">
+		<?php
+			foreach ( $pmpro_mailpoet_lists as $list ) {
+				$checked_modifier = in_array( $list['id'], $selected_lists ) ? ' checked' : '';
+				echo '<div class="pmpro_clickable">';
+				echo( "<input type='checkbox' name='pmpro_mailpoet_options[" . esc_attr( $option_name ) . "][]' value='" . esc_attr( $list['id'] ) . "' id='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $list['id'] ) . "'" . $checked_modifier . '>' );
+				echo( "<label for='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $list['id'] ) . "' class='pmpromailpoet-checkbox-label'>" . esc_html( $list['name'] ) . '</label>' );
+				echo '</div>';
+			}
 		?>
-		<div 
-		<?php
-		if ( count( $pmpro_mailpoet_lists ) > 5 ) {
-			?>
-			class="pmpromailpoet-checkbox-list-scrollable"<?php } ?>>
-		<?php
-		foreach ( $pmpro_mailpoet_lists as $list ) {
-			$checked_modifier = in_array( $list['id'], $selected_lists ) ? ' checked' : '';
-			echo( "<input type='checkbox' name='pmpro_mailpoet_options[" . esc_attr( $option_name ) . "][]' value='" . esc_attr( $list['id'] ) . "' id='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $list['id'] ) . "'" . $checked_modifier . '>' );
-			echo( "<label for='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $list['id'] ) . "' class='pmpromailpoet-checkbox-label'>" . esc_html( $list['name'] ) . '</label><br>' );
-		}
-		echo '</div>';
-	} else {
-		esc_html_e( 'No lists found.', 'pmpro-mailpoet' );
+		</div> <!-- end pmpro_checkbox_box -->
+	<?php } else {
+		esc_html_e( 'No lists found.', 'mailpoet-paid-memberships-pro-add-on' );
 	}
-
 }
