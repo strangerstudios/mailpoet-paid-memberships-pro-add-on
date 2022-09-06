@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Get the MailPoet API.
  *
@@ -28,6 +27,14 @@ function pmpro_mailpoet_get_all_lists() {
 	// We don't have the lists yet. Get them and cache them.
 	$mailpoet_api = pmpro_mailpoet_get_api();
 	$cached = empty( $mailpoet_api ) ? array() : $mailpoet_api->getLists();
+
+	// Remove trashed lists from results.
+	foreach( $cached as $key => $list ) {
+		if ( $list['deleted_at'] ) {
+			unset( $cached[$key] );
+		}
+	}
+
 	return $cached;
 }
 
