@@ -1,0 +1,35 @@
+# Copyright (C) 2022 Stranger Studios
+# This file is distributed under the same license as the Paid Memberships Pro - MailPoet Add On plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Paid Memberships Pro - MailPoet Add On 3.1\n"
+"Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
+"Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
+"Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-09-06T13:37:20+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.6.0\n"
+"X-Domain: MailPoet-Paid-Memberships-Pro-Add-on\n"
+
+#. Plugin Name of the plugin
+msgid "Paid Memberships Pro - MailPoet Add On"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "http://www.paidmembershipspro.com/pmpro-mailpoet/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Sync your WordPress users and members with MailPoet lists."
+msgstr ""
+
+#. Author of the plugin
+msgid "Stranger Studios"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://www.strangerstudios.com"
+msgstr ""
