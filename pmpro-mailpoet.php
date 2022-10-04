@@ -64,7 +64,7 @@ add_action( 'plugins_loaded', 'pmpro_mailpoet_load_textdomain' );
 function pmpro_mailpoet_add_action_links( $links ) {
 
 	$new_links = array(
-		'<a href="' . get_admin_url( null, 'options-general.php?page=pmpro_mailpoet_options' ) . '">' . __( 'Settings', 'mailpoet-paid-memberships-pro-add-on' ) . '</a>',
+		'<a href="' . get_admin_url( null, 'admin.php?page=pmpro-mailpoet' ) . '">' . esc_html__( 'Settings', 'mailpoet-paid-memberships-pro-add-on' ) . '</a>',
 	);
 	return array_merge( $new_links, $links );
 }
