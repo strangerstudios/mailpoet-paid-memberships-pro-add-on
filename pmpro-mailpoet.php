@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Paid Memberships Pro - MailPoet Add On
-Plugin URI: http://www.paidmembershipspro.com/pmpro-mailpoet/
+Plugin URI: https://www.paidmembershipspro.com/add-ons/mailpoet-integration/
 Description: Sync your WordPress users and members with MailPoet lists.
 Version: 3.1
-Author: Stranger Studios
-Author URI: http://www.strangerstudios.com
+Author: Paid Memberships Pro
+Author URI: https://www.paidmembershipspro.com
 Text Domain: mailpoet-paid-memberships-pro-add-on
 */
 
@@ -82,7 +82,7 @@ add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'pmpro_mailpoe
 function pmpro_mailpoet_plugin_row_meta( $links, $file ) {
 	if ( strpos( $file, 'pmpro-mailpoet.php' ) !== false ) {
 		$new_links = array(
-			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/add-ons/pmpro-mailpoet-integration/' ) . '" title="' . esc_attr( __( 'View Documentation', 'mailpoet-paid-memberships-pro-add-on' ) ) . '">' . __( 'Docs', 'mailpoet-paid-memberships-pro-add-on' ) . '</a>',
+			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/add-ons/mailpoet-integration/' ) . '" title="' . esc_attr( __( 'View Documentation', 'mailpoet-paid-memberships-pro-add-on' ) ) . '">' . __( 'Docs', 'mailpoet-paid-memberships-pro-add-on' ) . '</a>',
 			'<a href="' . esc_url( 'https://www.paidmembershipspro.com/support/' ) . '" title="' . esc_attr( __( 'Visit Customer Support Forum', 'mailpoet-paid-memberships-pro-add-on' ) ) . '">' . __( 'Support', 'mailpoet-paid-memberships-pro-add-on' ) . '</a>',
 		);
 		$links     = array_merge( $links, $new_links );
