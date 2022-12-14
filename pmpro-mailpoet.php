@@ -7,6 +7,7 @@ Version: 3.1
 Author: Paid Memberships Pro
 Author URI: https://www.paidmembershipspro.com
 Text Domain: mailpoet-paid-memberships-pro-add-on
+Domain Path: /languages
 */
 
 define( 'PMPRO_MAILPOET_BASE_FILE', __FILE__ );
