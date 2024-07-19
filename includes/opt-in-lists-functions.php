@@ -20,34 +20,22 @@ function pmpro_mailpoet_additional_lists_on_checkout() {
 
 	// Show the opt-in lists at checkout.
 	?>
-	<table id="pmpro_mailing_lists" class="pmpro_checkout top1em" width="100%" cellpadding="0" cellspacing="0" border="0">
-		<thead>
-		<tr>
-			<th>
-				<?php
-					if ( count( $options['opt-in_lists'] ) === 1 ) {
-						esc_html_e( 'Join our mailing list.', 'pmpro-mailpoet' );
-					} else {
-						esc_html_e( 'Join our mailing lists.', 'pmpro-mailpoet' );
-					}
-				?>
-			</th>
-		</tr>
-		</thead>
-		<tbody>
-		<tr class="odd">
-			<td>
+	<fieldset id="pmpro_mailpoet_additional_lists" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_fieldset' ) ); ?>">
+		<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_card' ) ); ?>">
+			<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_card_content' ) ); ?>">
+				<legend class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_legend' ) ); ?>">
+					<h2 class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_heading pmpro_font-large' ) ); ?>"><?php echo esc_html( _n( 'Join Our Mailing List', 'Join Our Mailing Lists', count( $options['opt-in_lists'] ), 'pmpro-mailpoet' ) ); ?></h2>
+				</legend>
 				<?php
 				global $current_user;
 				pmpro_mailpoet_show_optin_checkboxes( empty( $current_user->ID ) ? null : $current_user->ID );
 				?>
-			</td>
-		</tr>
-		</tbody>
-	</table>
+			</div>
+		</div>
+	</fieldset>
 	<?php
 }
-add_action( 'pmpro_checkout_after_tos_fields', 'pmpro_mailpoet_additional_lists_on_checkout' );
+add_action( 'pmpro_checkout_boxes', 'pmpro_mailpoet_additional_lists_on_checkout', 15 );
 
 /**
  * Preserve info when going off-site for payment w/offsite payment gateway (PayPal Express).
@@ -67,6 +55,11 @@ add_action( 'pmpro_paypalexpress_session_vars', 'pmpro_mailpoet_pmpro_paypalexpr
 	Add opt-in Lists to the user profile/edit user page.
 */
 function pmpro_mailpoet_show_optin_list_profile_fields( $user ) {
+	// If we are showing in the admin and we are running PMPro 3.0, bail. We will show this info on the Edit Membrer page.
+	if ( is_admin() && class_exists( 'PMPro_Subscription' ) ) {
+		return;
+	}
+
 	// If no opt-in lists are set, bail.
 	$options = pmpro_mailpoet_get_options();
 	if ( empty( $options['opt-in_lists'] ) ) {
@@ -75,18 +68,16 @@ function pmpro_mailpoet_show_optin_list_profile_fields( $user ) {
 
 	// Show opt-in lists setting.
 	?>
-		<h3><?php esc_html_e( 'Opt-in MailPoet Lists', 'pmpro-mailpoet' ); ?></h3>
-
-		<table class="form-table">
-			<tr>
-				<th>
-					<label><?php esc_html_e( 'Mailing Lists', 'pmpro-mailpoet' ); ?></label>
-				</th>
-				<td>
-					<?php pmpro_mailpoet_show_optin_checkboxes( $user->ID ) ?>
-				</td>
-			</tr>
-		</table>
+	<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_spacer' ) ); ?>"></div>
+	<fieldset id="pmpro_mailpoet_additional_lists" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_fieldset' ) ); ?>">
+		<legend class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_legend' ) ); ?>">
+			<h2 class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_heading pmpro_font-large' ) ); ?>"><?php echo esc_html( _n( 'Join Our Mailing List', 'Join Our Mailing Lists', count( $options['opt-in_lists'] ), 'pmpro-mailpoet' ) ); ?></h2>
+		</legend>
+		<?php
+		global $current_user;
+		pmpro_mailpoet_show_optin_checkboxes( empty( $current_user->ID ) ? null : $current_user->ID );
+		?>
+	</fieldset>
 	<?php
 }
 add_action( 'show_user_profile', 'pmpro_mailpoet_show_optin_list_profile_fields', 12 );
@@ -131,12 +122,22 @@ function pmpro_mailpoet_show_optin_checkboxes( $user_id = null ) {
 	}
 
 	// Show opt-in lists setting.
-	echo '<input type="hidden" name="pmpro_mailpoet_opt-in_lists_showing" value="1" />';
-	foreach ( $optin_lists as $optin_list ) {
-		$checked_modifier = ( in_array( $optin_list['id'], $user_list_ids ) ) ? ' checked' : '';
-		echo( "<input type='checkbox' name='pmpro_mailpoet_opt-in_lists[]' value='" . esc_attr( $optin_list['id'] ) . "' id='pmpro_mailpoet_opt-in_lists_" . esc_attr( $optin_list['id'] ) . "'" . $checked_modifier . ">" );
-		echo( "<label for='pmpro_mailpoet_opt-in_lists_" . esc_attr( $optin_list['id'] ) .  "' class='pmpromailpoet-checkbox-label'>" . $optin_list['name'] .  "</label><br>" );
-	}
+	?>
+	<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_fields' ) ); ?>">
+		<input type="hidden" name="pmpro_mailpoet_opt-in_lists_showing" value="1" />
+		<?php
+		foreach ( $optin_lists as $optin_list ) {
+			$checked_modifier = ( in_array( $optin_list['id'], $user_list_ids ) ) ? ' checked' : '';
+			?>
+			<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_fields-inline' ) ); ?>">
+				<input type='checkbox' name='pmpro_mailpoet_opt-in_lists[]' class='<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-checkbox pmpro_form_input-required' ) ); ?>' value='<?php echo esc_attr( $optin_list['id'] ) . "' id='pmpro_mailpoet_opt-in_lists_" . esc_attr( $optin_list['id'] ); ?>' <?php echo $checked_modifier; ?>>
+				<label for='pmpro_mailpoet_opt-in_lists_<?php echo esc_attr( $optin_list['id'] ); ?>' class='<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label pmpro_clickable' ) ); ?>'><?php echo esc_html( $optin_list['name'] ); ?></label>
+			</div>
+			<?php
+		}
+		?>
+	</div>
+	<?php
 }
 
 /**
@@ -194,3 +195,31 @@ add_action( 'personal_options_update', 'pmpro_mailpoet_save_optin_list_selection
 add_action( 'edit_user_profile_update', 'pmpro_mailpoet_save_optin_list_selections' );
 add_action( 'pmpro_personal_options_update', 'pmpro_mailpoet_save_optin_list_selections' );
 add_action( 'pmpro_after_checkout', 'pmpro_mailpoet_save_optin_list_selections', 15 );
+
+/**
+ * Add Mailpoet to edit member panels.
+ *
+ * @since TBD
+ *
+ * @param array $panels Array of panels.
+ */
+function pmpro_mailpoet_member_edit_panels( $panels ) {
+	// If no opt-in lists are set, bail. We don't need to show the panel.
+	$options = pmpro_mailpoet_get_options();
+	if ( empty( $options['opt-in_lists'] ) ) {
+		return;
+	}
+
+	// If the class doesn't exist and the abstract class does, require the class.
+	if ( ! class_exists( 'PMProMailPoet_Member_Edit_Panel' ) && class_exists( 'PMPro_Member_Edit_Panel' ) ) {
+		require_once( PMPRO_MAILPOET_DIR . '/classes/pmpromailpoet-class-member-edit-panel.php' );
+	}
+
+	// If the class exists, add a panel.
+	if ( class_exists( 'PMProMailPoet_Member_Edit_Panel' ) ) {
+		$panels[] = new PMProMailPoet_Member_Edit_Panel();
+	}
+
+	return $panels;
+}
+add_filter( 'pmpro_member_edit_panels', 'pmpro_mailpoet_member_edit_panels' );
