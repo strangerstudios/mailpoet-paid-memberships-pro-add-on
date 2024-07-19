@@ -3,7 +3,7 @@
 /**
  * Subscribe users to nonmember lists when they register.
  *
- * @since TBD
+ * @since 3.0
  *
  * @param int $user_id that was registered.
  */
@@ -19,7 +19,7 @@ add_action( 'user_register', 'pmpro_mailpoet_user_register' );
 /**
  * When users change levels, add/remove them to level-specific lists.
  *
- * @since TBD
+ * @since 3.0
  *
  * @param array $pmpro_old_user_levels Array of users and levels that the user was in before.
  */
