@@ -152,20 +152,24 @@ function pmpro_mailpoet_show_optin_checkboxes( $user_id = null ) {
 	?>
 	<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_fields' ) ); ?>">
 		<input type="hidden" name="pmpro_mailpoet_opt-in_lists_showing" value="1" />
-		<ul>
-			<?php
-			foreach ( $optin_lists as $optin_list ) {
-				$checked_modifier = ( in_array( $optin_list['id'], $user_list_ids ) ) ? ' checked' : '';
-				?>
-				<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_fields-inline' ) ); ?>">
-					<input type='checkbox' name='pmpro_mailpoet_opt-in_lists[]' class='<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-checkbox pmpro_form_input-required' ) ); ?>' value='<?php echo esc_attr( $optin_list['id'] ) . "' id='pmpro_mailpoet_opt-in_lists_" . esc_attr( $optin_list['id'] ); ?>' <?php echo $checked_modifier; ?>>
-					<label for='pmpro_mailpoet_opt-in_lists_<?php echo esc_attr( $optin_list['id'] ); ?>' class='<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label pmpro_clickable' ) ); ?>'><?php echo esc_html( $optin_list['name'] ); ?></label>
-				</div>
+		<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_field pmpro_form_field pmpro_form_field-checkbox_grouped' ) ); ?>">
+			<ul class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_list pmpro_list-plain' ) ); ?>">
 				<?php
-			}
-			?>
-		</ul>
-	</div>
+				foreach ( $optin_lists as $optin_list ) {
+					$checked_modifier = ( in_array( $optin_list['id'], $user_list_ids ) ) ? ' checked' : '';
+					?>
+					<li class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_list_item' ) ); ?>">
+						<span class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_field-checkbox-grouped-item' ) ); ?>">
+							<input name="pmpro_mailpoet_opt-in_lists[]" type="checkbox" value="<?php echo esc_attr( $optin_list['id'] ) . "' id='pmpro_mailpoet_opt-in_lists_" . esc_attr( $optin_list['id'] ); ?>" id="pmpro_mailpoet_opt-in_lists_<?php echo esc_attr( $optin_list['id'] ); ?>" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-checkbox' ) ); ?>" <?php echo $checked_modifier; ?>>
+							<label for="pmpro_mailpoet_opt-in_lists_<?php echo esc_attr( $optin_list['id'] ); ?>" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label pmpro_form_label-inline pmpro_clickable' ) ); ?>"><?php echo esc_html( $optin_list['name'] ); ?></label>
+						</span>
+					</li>
+					<?php
+				}
+				?>
+			</ul> <!-- end pmpro_list pmpro_list-plain -->
+		</div> <!-- end pmpro_form_field -->
+	</div> <!-- end pmpro_form_fields -->
 	<?php
 }
 

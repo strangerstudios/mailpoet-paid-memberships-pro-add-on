@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Paid Memberships Pro - MailPoet Add On
+Plugin Name: Paid Memberships Pro - MailPoet
 Plugin URI: https://www.paidmembershipspro.com/add-ons/mailpoet-integration/
-Description: Sync your WordPress users and members with MailPoet lists.
+Description: Automatically subscribe members to MailPoet lists or allow them to opt-in to specific MailPoet newsletters.
 Version: 3.1
 Author: Paid Memberships Pro
 Author URI: https://www.paidmembershipspro.com
