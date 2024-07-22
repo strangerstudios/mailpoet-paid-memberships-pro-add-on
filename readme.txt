@@ -98,7 +98,7 @@ Please visit [our support site at https://www.paidmembershipspro.com](http://www
 4. When Sending a Newsletter in MailPoet, Choose Your Member-Specific Lists for Paid Newsletter Functionality Like Substack.
 
 == Changelog ==
-= 3.2 - 2024-07-22= =
+= 3.2 - 2024-07-22 =
 * ENHANCEMENT: Updated the frontend UI for compatibility with PMPro v3.1. #16 (@dparker1005, @kimcoleman)
 
 = 3.1 - 2022-09-06 =
