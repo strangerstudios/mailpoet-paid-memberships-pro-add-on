@@ -240,7 +240,7 @@ function pmpro_mailpoet_member_edit_panels( $panels ) {
 	// If no opt-in lists are set, bail. We don't need to show the panel.
 	$options = pmpro_mailpoet_get_options();
 	if ( empty( $options['opt-in_lists'] ) ) {
-		return;
+		return $panels;
 	}
 
 	// If the class doesn't exist and the abstract class does, require the class.
