@@ -232,7 +232,7 @@ add_action( 'pmpro_after_checkout', 'pmpro_mailpoet_save_optin_list_selections',
 /**
  * Add Mailpoet to edit member panels.
  *
- * @since TBD
+ * @since 3.2
  *
  * @param array $panels Array of panels.
  */

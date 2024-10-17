@@ -180,7 +180,7 @@ function pmpro_mailpoet_admin_warnings() {
 /**
  * Add description for General Settings section.
  *
- * @since TBD
+ * @since 3.2
  */
 function pmpro_mailpoet_section_general_lists() {
 	?>
