@@ -19,7 +19,7 @@ The MailPoet Integration for Paid Memberships Pro automatically subscribes membe
 
 When a user’s membership level is cancelled or expired, they are automatically added to your selected non-member list (for members who have cancelled or expired) and are appropriately tagged in MailPoet. This allows you to send premium email content only to your active members, by membership level.
 
-> This plugin requires [MailPoet](https://wordpress.org/plugins/mailpoet/) and [Paid Memberships Pro](https://wordpress.org/plugins/paid-memberships-pro/).
+> This plugin requires [MailPoet](https://wordpress.org/plugins/mailpoet/) and [Paid Memberships Pro](https://www.paidmembershipspro.com).
 
 [MailPoet](https://wordpress.org/plugins/mailpoet/) is an email marketing plugin and service that you can use directly inside your WordPress site. You can use the MailPoet drag-and-drop builder to design custom email newsletters, select subscribers, and distribute emails through the WordPress admin.
 
@@ -39,7 +39,7 @@ Paid Memberships Pro is built "the WordPress way" with a lean core plugin and ov
 
 Paid Memberships Pro is the flagship product of Stranger Studios. We are a bootstrapped company which grows when membership sites like yours grow. That means we focus our entire company towards helping you succeed.
 
-[Try Paid Memberships Pro entirely for free on WordPress.org](https://wordpress.org/plugins/paid-memberships-pro/) and see why 100,000+ sites trust us to help them #GetPaid.
+[Try Paid Memberships Pro entirely for free](https://www.paidmembershipspro.com) and see why 100,000+ sites trust us to help them #GetPaid.
 
 ### Read More
 
@@ -51,7 +51,7 @@ Want more information on paid email newsletters and members-only emails with Pai
 
 == Installation ==
 
-Note: You must have [Paid Memberships Pro](https://wordpress.org/plugins/paid-memberships-pro/) installed and activated on your site.
+Note: You must have [Paid Memberships Pro](https://www.paidmembershipspro.com) installed and activated on your site.
 
 ### Install PMPro MailPoet from within WordPress
 
