@@ -1,0 +1,153 @@
+# Copyright (C) 2024 Paid Memberships Pro
+# This file is distributed under the same license as the Paid Memberships Pro - MailPoet plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Paid Memberships Pro - MailPoet 3.3\n"
+"Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
+"Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
+"Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-10-17T15:34:01+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: mailpoet-paid-memberships-pro-add-on\n"
+
+#. Plugin Name of the plugin
+#: pmpro-mailpoet.php
+msgid "Paid Memberships Pro - MailPoet"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: pmpro-mailpoet.php
+msgid "https://www.paidmembershipspro.com/add-ons/mailpoet-integration/"
+msgstr ""
+
+#. Description of the plugin
+#: pmpro-mailpoet.php
+msgid "Automatically subscribe members to MailPoet lists or allow them to opt-in to specific MailPoet newsletters."
+msgstr ""
+
+#. Author of the plugin
+#: pmpro-mailpoet.php
+msgid "Paid Memberships Pro"
+msgstr ""
+
+#. Author URI of the plugin
+#: pmpro-mailpoet.php
+msgid "https://www.paidmembershipspro.com"
+msgstr ""
+
+#: includes/opt-in-lists-functions.php:70
+msgid "Opt-in MailPoet Lists"
+msgstr ""
+
+#: includes/opt-in-lists-functions.php:75
+msgid "Mailing Lists"
+msgstr ""
+
+#: includes/settings.php:13
+#: includes/settings.php:32
+msgid "MailPoet"
+msgstr ""
+
+#: includes/settings.php:13
+msgid "PMPro MailPoet"
+msgstr ""
+
+#: includes/settings.php:50
+msgid "MailPoet Integration Settings"
+msgstr ""
+
+#: includes/settings.php:59
+msgid "Save Settings"
+msgstr ""
+
+#: includes/settings.php:86
+msgid "Non-Member Lists"
+msgstr ""
+
+#: includes/settings.php:87
+msgid "Opt-in Lists"
+msgstr ""
+
+#: includes/settings.php:106
+msgid "Unsubscribe on Level Change?"
+msgstr ""
+
+#: includes/settings.php:174
+msgid "Membership lists lists cannot also be set as opt-in lists."
+msgstr ""
+
+#: includes/settings.php:211
+msgid "Users will automatically be subscribed to selected lists when they receive the corresponding membership level."
+msgstr ""
+
+#: includes/settings.php:233
+msgid "Users will automatically be subscribed to non-member lists when they register without purchasing a membership level or when their membership level is removed."
+msgstr ""
+
+#: includes/settings.php:246
+msgid "No."
+msgstr ""
+
+#: includes/settings.php:247
+msgid "Yes, unsubscribe from old membership lists on level change."
+msgstr ""
+
+#: includes/settings.php:269
+msgid "If you are having issues with email delivery from your server, <a href=\"%s\" title=\"Paid Memberships Pro - Subscription Delays Add On\" target=\"_blank\" rel=\"nofollow noopener\">please read our email troubleshooting guide</a>. As an alternative, Paid Memberships Pro offers built-in integration for SendWP. <em>Optional: SendWP is a third-party service for transactional email in WordPress. <a href=\"%s\" title=\"Documentation on SendWP and Paid Memberships Pro\" target=\"_blank\" rel=\"nofollow noopener\">Click here to learn more about SendWP and Paid Memberships Pro</a></em>."
+msgstr ""
+
+#: includes/settings.php:277
+msgid "Connect to SendWP"
+msgstr ""
+
+#: includes/settings.php:279
+msgid "Disconnect from SendWP"
+msgstr ""
+
+#: includes/settings.php:285
+msgid "Your site is connected to SendWP."
+msgstr ""
+
+#: includes/settings.php:285
+msgid "View Your SendWP Account"
+msgstr ""
+
+#: includes/settings.php:286
+msgid "Please enable email sending inside %s."
+msgstr ""
+
+#: includes/settings.php:301
+msgid "Give users the option to subscribe to additional lists at checkout and on their profile page."
+msgstr ""
+
+#: includes/settings.php:335
+msgid "No lists found."
+msgstr ""
+
+#: pmpro-mailpoet.php:36
+msgid "In order for <strong>Paid Memberships Pro - MailPoet Integration</strong> to function correctly, you must install or activate the latest version of <a href='%s' target='_blank'>MailPoet v3</a>."
+msgstr ""
+
+#: pmpro-mailpoet.php:68
+msgid "Settings"
+msgstr ""
+
+#: pmpro-mailpoet.php:86
+msgid "View Documentation"
+msgstr ""
+
+#: pmpro-mailpoet.php:86
+msgid "Docs"
+msgstr ""
+
+#: pmpro-mailpoet.php:87
+msgid "Visit Customer Support Forum"
+msgstr ""
+
+#: pmpro-mailpoet.php:87
+msgid "Support"
+msgstr ""

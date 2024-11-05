@@ -2,8 +2,8 @@
 Contributors: strangerstudios, andrewza, dlparker1005, paidmembershipspro
 Tags: mailpoet, paid newsletter, private newsletter, pmpro, paid memberships pro, restrict content
 Requires at least: 5.2
-Tested up to: 6.5
-Stable tag: 3.1
+Tested up to: 6.6
+Stable tag: 3.3
 License: GPLv2 or later 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -19,7 +19,7 @@ The MailPoet Integration for Paid Memberships Pro automatically subscribes membe
 
 When a user’s membership level is cancelled or expired, they are automatically added to your selected non-member list (for members who have cancelled or expired) and are appropriately tagged in MailPoet. This allows you to send premium email content only to your active members, by membership level.
 
-> This plugin requires [MailPoet](https://wordpress.org/plugins/mailpoet/) and [Paid Memberships Pro](https://wordpress.org/plugins/paid-memberships-pro/).
+> This plugin requires [MailPoet](https://wordpress.org/plugins/mailpoet/) and [Paid Memberships Pro](https://www.paidmembershipspro.com).
 
 [MailPoet](https://wordpress.org/plugins/mailpoet/) is an email marketing plugin and service that you can use directly inside your WordPress site. You can use the MailPoet drag-and-drop builder to design custom email newsletters, select subscribers, and distribute emails through the WordPress admin.
 
@@ -39,7 +39,7 @@ Paid Memberships Pro is built "the WordPress way" with a lean core plugin and ov
 
 Paid Memberships Pro is the flagship product of Stranger Studios. We are a bootstrapped company which grows when membership sites like yours grow. That means we focus our entire company towards helping you succeed.
 
-[Try Paid Memberships Pro entirely for free on WordPress.org](https://wordpress.org/plugins/paid-memberships-pro/) and see why 100,000+ sites trust us to help them #GetPaid.
+[Try Paid Memberships Pro entirely for free](https://www.paidmembershipspro.com) and see why 100,000+ sites trust us to help them #GetPaid.
 
 ### Read More
 
@@ -51,7 +51,7 @@ Want more information on paid email newsletters and members-only emails with Pai
 
 == Installation ==
 
-Note: You must have [Paid Memberships Pro](https://wordpress.org/plugins/paid-memberships-pro/) installed and activated on your site.
+Note: You must have [Paid Memberships Pro](https://www.paidmembershipspro.com) installed and activated on your site.
 
 ### Install PMPro MailPoet from within WordPress
 
@@ -98,6 +98,16 @@ Please visit [our support site at https://www.paidmembershipspro.com](http://www
 4. When Sending a Newsletter in MailPoet, Choose Your Member-Specific Lists for Paid Newsletter Functionality Like Substack.
 
 == Changelog ==
+= 3.3 - 2024-10-17 =
+* FEATURE: Now updating the plugin from paidmembershipspro.com.
+* ENHANCEMENT: Updated translation files bundled with the plugin.
+
+= 3.2.1 - 2024-07-25 =
+* BUG FIX: Fixed issue where the Edit Member page would not show any panels if there are no opt-in lists configured. #17 (@JarrydLong)
+
+= 3.2 - 2024-07-22 =
+* ENHANCEMENT: Updated the frontend UI for compatibility with PMPro v3.1. #16 (@dparker1005, @kimcoleman)
+
 = 3.1 - 2022-09-06 =
 * ENHANCEMENT: Fixed wording at checkout for opt-in lists.
 * ENHANCEMENT: Removed trashed lists from the settings page. Only show published lists.

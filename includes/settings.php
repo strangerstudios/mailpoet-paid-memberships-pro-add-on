@@ -46,21 +46,18 @@ add_action( 'admin_bar_menu', 'pmpro_mailpoet_admin_bar_menu', 1000 );
  */
 function pmpro_mailpoet_render_adminpage() {
 	?>
-	<div class="wrap">
-		<div id="icon-options-general" class="icon32"><br></div>
-		<h2><?php esc_html_e( 'Paid Memberships Pro - MailPoet Integration Settings', 'mailpoet-paid-memberships-pro-add-on' ); ?></h2>
+	<div class="wrap pmpro_admin pmpro_admin-pmpro-mailpoet">
+		<h1><?php esc_html_e( 'MailPoet Integration Settings', 'mailpoet-paid-memberships-pro-add-on' ); ?></h2>
 
 		<?php pmpro_mailpoet_admin_warnings(); ?>
 		<form action="options.php" method="post">
 			<?php settings_fields( 'pmpro_mailpoet_options' ); ?>
 			<?php do_settings_sections( 'pmpro_mailpoet_options' ); ?>
 
-			<p><br/></p>
-
-			<div class="bottom-buttons">
+			<p class="submit">
 				<input type="hidden" name="pmpro_mailpoet_options[set]" value="1"/>
 				<input type="submit" name="submit" class="button-primary" value="<?php esc_attr_e( 'Save Settings', 'mailpoet-paid-memberships-pro-add-on' ); ?>">
-			</div>
+			</p>
 
 		</form>
 	</div>
@@ -76,14 +73,32 @@ function pmpro_mailpoet_admin_init() {
 	register_setting( 'pmpro_mailpoet_options', 'pmpro_mailpoet_options', 'pmpro_mailpoet_options_validate' );
 	
 	// General Settings.
-	add_settings_section( 'pmpro_mailpoet_section_opt_in_lists', esc_html__( 'General Settings', 'mailpoet-paid-memberships-pro-add-on' ), '', 'pmpro_mailpoet_options' );
+	add_settings_section(
+		'pmpro_mailpoet_section_opt_in_lists',
+		'',
+		'pmpro_mailpoet_section_general_lists',
+		'pmpro_mailpoet_options',
+		array(
+			'before_section' => '<div class="pmpro_section">',
+			'after_section' => '</div></div>',
+		)
+	);
 	add_settings_field( 'pmpro_mailpoet_option_nonmember_lists', esc_html__( 'Non-Member Lists', 'mailpoet-paid-memberships-pro-add-on' ), 'pmpro_mailpoet_option_nonmember_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
 	add_settings_field( 'pmpro_mailpoet_option_opt_in_lists', esc_html__( 'Opt-in Lists', 'mailpoet-paid-memberships-pro-add-on' ), 'pmpro_mailpoet_option_opt_in_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
 
 	//SendWP Email Deliverability.
 	add_settings_field( 'pmpro_mailpoet_sendwp_cta', 'Email Deliverability', 'pmpro_mailpoet_sendwp_cta', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
 
-	add_settings_section( 'pmpro_mailpoet_section_membership_lists', esc_html__( 'Membership Lists', 'mailpoet-paid-memberships-pro-add-on' ), 'pmpro_mailpoet_section_membership_lists', 'pmpro_mailpoet_options' );
+	add_settings_section(
+		'pmpro_mailpoet_section_membership_lists',
+		'',
+		'pmpro_mailpoet_section_membership_lists',
+		'pmpro_mailpoet_options',
+		array(
+			'before_section' => '<div class="pmpro_section">',
+			'after_section' => '</div></div>'
+		)
+	);
 	$levels = pmpro_mailpoet_get_all_levels();
 	foreach ( $levels as $level ) {
 		add_settings_field( 'pmpro_mailpoet_option_memberships_lists_' . (int) $level->id, esc_html( $level->name ), 'pmpro_mailpoet_option_memberships_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists', array( $level ) );
@@ -163,13 +178,37 @@ function pmpro_mailpoet_admin_warnings() {
 }
 
 /**
+ * Add description for General Settings section.
+ *
+ * @since 3.2
+ */
+function pmpro_mailpoet_section_general_lists() {
+	?>
+	<div id="pmpro-mailpoet-general-lists" class="pmpro_section_toggle" data-visibility="hidden" data-activated="false">
+		<button class="pmpro_section-toggle-button" type="button" aria-expanded="false">
+			<span class="dashicons dashicons-arrow-up-alt2"></span>
+			<?php esc_html_e( 'General Settings', 'pmpro-mailpoet' ); ?>
+		</button>
+	</div>
+	<div class="pmpro_section_inside">
+	<?php
+}
+
+/**
  * Add description for Membership Lists section.
  *
  * @since 3.0
  */
 function pmpro_mailpoet_section_membership_lists() {
 	?>
-	<p><?php esc_html_e( 'Users will automatically be subscribed to selected lists when they receive the corresponding membership level.', 'mailpoet-paid-memberships-pro-add-on' ); ?></p>
+	<div id="pmpro-mailpoet-membership-lists" class="pmpro_section_toggle" data-visibility="hidden" data-activated="false">
+		<button class="pmpro_section-toggle-button" type="button" aria-expanded="false">
+			<span class="dashicons dashicons-arrow-up-alt2"></span>
+			<?php esc_html_e( 'Membership Lists', 'pmpro-mailpoet' ); ?>
+		</button>
+	</div>
+	<div class="pmpro_section_inside">
+		<p><?php esc_html_e( 'Users will automatically be subscribed to selected lists when they receive the corresponding membership level.', 'mailpoet-paid-memberships-pro-add-on' ); ?></p>
 	<?php
 }
 
