@@ -119,10 +119,15 @@ function pmpro_mailpoet_add_user_to_lists( $user_id, $list_ids ) {
 	$subscriber = pmpro_mailpoet_get_subscriber( $user_id );
 	if ( ! empty( $subscriber['id'] ) ) {
 		// Since we already have the subscriber, we know that API is available.
-		$new_subscriber = pmpro_mailpoet_get_api()->subscribeToLists( $subscriber['id'], $list_ids );
+			$mailpoet_api = pmpro_mailpoet_get_api();
 
-		// Cache the new subscriber.
-		pmpro_mailpoet_get_subscriber( $user_id, $new_subscriber );
+			foreach( $list_ids as $list_id ) {
+				try {
+					$new_subscriber = $mailpoet_api->addSubscriber( $subscriber['id'], $list_id );
+				} catch (\Throwable $th) {
+
+				}
+			}
 	}
 }
 
