@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Paid Memberships Pro - MailPoet plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Paid Memberships Pro - MailPoet 3.3\n"
+"Project-Id-Version: Paid Memberships Pro - MailPoet 3.3.1\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-17T15:34:01+00:00\n"
+"POT-Creation-Date: 2024-11-05T13:55:13+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: mailpoet-paid-memberships-pro-add-on\n"
@@ -28,50 +28,61 @@ msgstr ""
 
 #. Description of the plugin
 #: pmpro-mailpoet.php
+#: mailpoet-paid-memberships-pro-add-on.php
 msgid "Automatically subscribe members to MailPoet lists or allow them to opt-in to specific MailPoet newsletters."
 msgstr ""
 
 #. Plugin Name of the plugin
 #: pmpro-mailpoet.php
+#: mailpoet-paid-memberships-pro-add-on.php
 msgid "Paid Memberships Pro - MailPoet"
 msgstr ""
 
 #. Author URI of the plugin
 #: pmpro-mailpoet.php
+#: mailpoet-paid-memberships-pro-add-on.php
 msgid "https://www.paidmembershipspro.com"
 msgstr "https://www.paidmembershipspro.com"
 
 #. Author of the plugin
 #: pmpro-mailpoet.php
+#: mailpoet-paid-memberships-pro-add-on.php
 msgid "Paid Memberships Pro"
 msgstr "Paid Memberships Pro"
 
 #. Plugin URI of the plugin
 #: pmpro-mailpoet.php
+#: mailpoet-paid-memberships-pro-add-on.php
 msgid "https://www.paidmembershipspro.com/add-ons/mailpoet-integration/"
 msgstr "https://www.paidmembershipspro.com/add-ons/mailpoet-integration/"
 
 #: pmpro-mailpoet.php:87
+#: mailpoet-paid-memberships-pro-add-on.php:87
 msgid "Support"
 msgstr "Support"
 
 #: pmpro-mailpoet.php:87
+#: mailpoet-paid-memberships-pro-add-on.php:87
 msgid "Visit Customer Support Forum"
 msgstr "Besök kundsupportforum"
 
 #: pmpro-mailpoet.php:86
+#: mailpoet-paid-memberships-pro-add-on.php:86
 msgid "Docs"
 msgstr "Dokumentation"
 
 #: pmpro-mailpoet.php:86
+#: mailpoet-paid-memberships-pro-add-on.php:86
 msgid "View Documentation"
 msgstr "Visa dokumentation"
 
 #: pmpro-mailpoet.php:68
+#: mailpoet-paid-memberships-pro-add-on.php:68
 msgid "Settings"
 msgstr "﻿Inställningar"
 
 #: pmpro-mailpoet.php:36
+#: mailpoet-paid-memberships-pro-add-on.php:36
 msgid "In order for <strong>Paid Memberships Pro - MailPoet Integration</strong> to function correctly, you must install or activate the latest version of <a href='%s' target='_blank'>MailPoet v3</a>."
 msgstr ""
 
