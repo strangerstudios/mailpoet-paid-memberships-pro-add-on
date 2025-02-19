@@ -187,7 +187,7 @@ function pmpro_mailpoet_section_general_lists() {
 	<div id="pmpro-mailpoet-general-lists" class="pmpro_section_toggle" data-visibility="hidden" data-activated="false">
 		<button class="pmpro_section-toggle-button" type="button" aria-expanded="false">
 			<span class="dashicons dashicons-arrow-up-alt2"></span>
-			<?php esc_html_e( 'General Settings', 'pmpro-mailpoet' ); ?>
+			<?php esc_html_e( 'General Settings', 'mailpoet-paid-memberships-pro-add-on' ); ?>
 		</button>
 	</div>
 	<div class="pmpro_section_inside">
@@ -204,7 +204,7 @@ function pmpro_mailpoet_section_membership_lists() {
 	<div id="pmpro-mailpoet-membership-lists" class="pmpro_section_toggle" data-visibility="hidden" data-activated="false">
 		<button class="pmpro_section-toggle-button" type="button" aria-expanded="false">
 			<span class="dashicons dashicons-arrow-up-alt2"></span>
-			<?php esc_html_e( 'Membership Lists', 'pmpro-mailpoet' ); ?>
+			<?php esc_html_e( 'Membership Lists', 'mailpoet-paid-memberships-pro-add-on' ); ?>
 		</button>
 	</div>
 	<div class="pmpro_section_inside">

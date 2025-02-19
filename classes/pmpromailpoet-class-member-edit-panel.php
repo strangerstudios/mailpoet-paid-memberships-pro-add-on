@@ -6,8 +6,8 @@ class PMProMailPoet_Member_Edit_Panel extends PMPro_Member_Edit_Panel {
 	 */
 	public function __construct() {
 		$this->slug = 'pmpro-mailpoet';
-		$this->title = esc_html__( 'MailPoet Opt-In Lists', 'pmpro-mailpoet' );
-		$this->submit_text = current_user_can( 'edit_users' ) ? __( 'Update Opt-In Lists', 'paid-memberships-pro' ) : '';
+		$this->title = esc_html__( 'MailPoet Opt-In Lists', 'mailpoet-paid-memberships-pro-add-on' );
+		$this->submit_text = current_user_can( 'edit_users' ) ? __( 'Update Opt-In Lists', 'mailpoet-paid-memberships-pro-add-on' ) : '';
 	}
 
 	/**

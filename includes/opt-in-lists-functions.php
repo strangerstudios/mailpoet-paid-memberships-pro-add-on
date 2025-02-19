@@ -23,7 +23,7 @@ function pmpro_mailpoet_additional_lists_on_checkout() {
 		<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_card' ) ); ?>">
 			<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_card_content' ) ); ?>">
 				<legend class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_legend' ) ); ?>">
-					<h2 class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_heading pmpro_font-large' ) ); ?>"><?php echo esc_html( _n( 'Join Our Mailing List', 'Join Our Mailing Lists', count( $options['opt-in_lists'] ), 'pmpro-mailpoet' ) ); ?></h2>
+					<h2 class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_heading pmpro_font-large' ) ); ?>"><?php echo esc_html( _n( 'Join Our Mailing List', 'Join Our Mailing Lists', count( $options['opt-in_lists'] ), 'mailpoet-paid-memberships-pro-add-on' ) ); ?></h2>
 				</legend>
 				<?php
 				global $current_user;
@@ -100,7 +100,7 @@ function pmpro_mailpoet_show_optin_list_profile_fields_frontend( $user ) {
 	<div class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_spacer' ) ); ?>"></div>
 	<fieldset id="pmpro_mailpoet_additional_lists" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_fieldset' ) ); ?>">
 		<legend class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_legend' ) ); ?>">
-			<h2 class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_heading pmpro_font-large' ) ); ?>"><?php echo esc_html( _n( 'Join Our Mailing List', 'Join Our Mailing Lists', count( $options['opt-in_lists'] ), 'pmpro-mailpoet' ) ); ?></h2>
+			<h2 class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_heading pmpro_font-large' ) ); ?>"><?php echo esc_html( _n( 'Join Our Mailing List', 'Join Our Mailing Lists', count( $options['opt-in_lists'] ), 'mailpoet-paid-memberships-pro-add-on' ) ); ?></h2>
 		</legend>
 		<?php
 		global $current_user;
