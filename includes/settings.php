@@ -16,30 +16,6 @@ function pmpro_mailpoet_add_admin_page() {
 add_action( 'admin_menu', 'pmpro_mailpoet_add_admin_page', 20 );
 
 /**
- * Add MailPoet settings menu to admin bar.
- *
- * @since 3.0
- */
-function pmpro_mailpoet_admin_bar_menu() {
-	global $wp_admin_bar;
-	if ( ! is_super_admin() || ! is_admin_bar_showing() ) {
-		return;
-	}
-	$wp_admin_bar->add_menu(
-		array(
-			'id'     => 'pmpro-mailpoet',
-			'parent' => 'paid-memberships-pro',
-			'title'  => esc_html__( 'MailPoet', 'mailpoet-paid-memberships-pro-add-on' ),
-			'href'   => get_admin_url(
-				null,
-				'/admin.php?page=pmpro-mailpoet'
-			),
-		)
-	);
-}
-add_action( 'admin_bar_menu', 'pmpro_mailpoet_admin_bar_menu', 1000 );
-
-/**
  * Render the MailPoet settings page.
  *
  * @since 3.0
