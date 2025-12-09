@@ -26,7 +26,7 @@ function pmpro_mailpoet_show_notice() {
 	global $msg, $msgt;
 
 	// MailPoet V3 is installed, just bail.
-	if ( function_exists( 'mailpoet_deactivate_plugin' ) ) {
+	if ( class_exists( 'MailPoet\Config\Env' ) ) {
 		return;
 	}
 	// Show the notice here.
