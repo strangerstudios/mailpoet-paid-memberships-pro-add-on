@@ -321,7 +321,7 @@ function pmpro_mailpoet_settings_build_list_checkboxes_helper( $option_name, $it
 		?>
 		</div> <!-- end pmpro_checkbox_box -->
 	<?php } else {
-		esc_html_e( 'No items found.', 'mailpoet-paid-memberships-pro-add-on' );
+		esc_html_e( 'No lists found.', 'mailpoet-paid-memberships-pro-add-on' );
 	}
 }
 

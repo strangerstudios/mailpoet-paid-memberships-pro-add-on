@@ -147,6 +147,10 @@ function pmpro_mailpoet_add_user_to_lists( $user_id, $list_ids ) {
 			// can throw if a confirmation email fails to send even though the list change succeeded.
 			pmpro_mailpoet_log_api_error( sprintf( 'Error subscribing user %d to lists: %s', $user_id, $e->getMessage() ) );
 		}
+	} else {
+		// No MailPoet subscriber exists for this user yet, so there is nothing to subscribe.
+		// Subscribers are created by MailPoet's own WordPress user sync, not by this plugin.
+		pmpro_mailpoet_log_api_error( sprintf( 'No MailPoet subscriber found for user %d; skipping list subscribe. Ensure MailPoet is set to sync WordPress users.', $user_id ) );
 	}
 }
 
@@ -175,6 +179,9 @@ function pmpro_mailpoet_remove_user_from_lists( $user_id, $list_ids ) {
 			// Log the error but don't break the request (e.g. checkout).
 			pmpro_mailpoet_log_api_error( sprintf( 'Error unsubscribing user %d from lists: %s', $user_id, $e->getMessage() ) );
 		}
+	} else {
+		// No MailPoet subscriber exists for this user, so there is nothing to unsubscribe.
+		pmpro_mailpoet_log_api_error( sprintf( 'No MailPoet subscriber found for user %d; skipping list unsubscribe.', $user_id ) );
 	}
 }
 
@@ -246,10 +253,16 @@ function pmpro_mailpoet_add_user_to_tags( $user_id, $tag_ids ) {
 			}
 		}
 
-		// Cache the new subscriber.
+		// Cache the latest subscriber response. After a partial failure this is the response
+		// from the last successful tagSubscriber() call, so the cache may lag the true state
+		// by one tag until the next lookup refreshes it.
 		if ( ! empty( $new_subscriber ) ) {
 			pmpro_mailpoet_get_subscriber( $user_id, $new_subscriber );
 		}
+	} else {
+		// No MailPoet subscriber exists for this user yet, so the tags cannot be applied.
+		// Subscribers are created by MailPoet's own WordPress user sync, not by this plugin.
+		pmpro_mailpoet_log_api_error( sprintf( 'No MailPoet subscriber found for user %d; skipping tag add. Ensure MailPoet is set to sync WordPress users.', $user_id ) );
 	}
 }
 
@@ -280,10 +293,15 @@ function pmpro_mailpoet_remove_user_from_tags( $user_id, $tag_ids ) {
 			}
 		}
 
-		// Cache the new subscriber.
+		// Cache the latest subscriber response. After a partial failure this is the response
+		// from the last successful untagSubscriber() call, so the cache may lag the true state
+		// by one tag until the next lookup refreshes it.
 		if ( ! empty( $new_subscriber ) ) {
 			pmpro_mailpoet_get_subscriber( $user_id, $new_subscriber );
 		}
+	} else {
+		// No MailPoet subscriber exists for this user, so there are no tags to remove.
+		pmpro_mailpoet_log_api_error( sprintf( 'No MailPoet subscriber found for user %d; skipping tag removal.', $user_id ) );
 	}
 }
 
