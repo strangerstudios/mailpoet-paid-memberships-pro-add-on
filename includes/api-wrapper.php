@@ -11,24 +11,6 @@ function pmpro_mailpoet_get_api() {
 }
 
 /**
- * Log a MailPoet API error without interrupting the request.
- *
- * The MailPoet API can throw exceptions during otherwise-successful operations
- * (e.g. a list change succeeds but the confirmation email fails to send). We
- * never want such a failure to produce a fatal error during checkout or a
- * level change, so callers catch the exception and log it here instead.
- *
- * @since TBD
- *
- * @param string $message The error message to log.
- */
-function pmpro_mailpoet_log_api_error( $message ) {
-	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-		error_log( 'PMPro MailPoet: ' . $message );
-	}
-}
-
-/**
  * Get all MailPoet lists.
  *
  * @since 3.0
@@ -137,16 +119,10 @@ function pmpro_mailpoet_add_user_to_lists( $user_id, $list_ids ) {
 	$subscriber = pmpro_mailpoet_get_subscriber( $user_id );
 	if ( ! empty( $subscriber['id'] ) ) {
 		// Since we already have the subscriber, we know that API is available.
-		try {
-			$new_subscriber = pmpro_mailpoet_get_api()->subscribeToLists( $subscriber['id'], $list_ids );
+		$new_subscriber = pmpro_mailpoet_get_api()->subscribeToLists( $subscriber['id'], $list_ids );
 
-			// Cache the new subscriber.
-			pmpro_mailpoet_get_subscriber( $user_id, $new_subscriber );
-		} catch ( \Exception $e ) {
-			// Log the error but don't break the request (e.g. checkout). The MailPoet API
-			// can throw if a confirmation email fails to send even though the list change succeeded.
-			pmpro_mailpoet_log_api_error( sprintf( 'Error subscribing user %d to lists: %s', $user_id, $e->getMessage() ) );
-		}
+		// Cache the new subscriber.
+		pmpro_mailpoet_get_subscriber( $user_id, $new_subscriber );
 	}
 }
 
@@ -166,154 +142,9 @@ function pmpro_mailpoet_remove_user_from_lists( $user_id, $list_ids ) {
 	$subscriber = pmpro_mailpoet_get_subscriber( $user_id );
 	if ( ! empty( $subscriber['id'] ) ) {
 		// Since we already have the subscriber, we know that API is available.
-		try {
-			$new_subscriber = pmpro_mailpoet_get_api()->unsubscribeFromLists( $subscriber['id'], $list_ids );
-
-			// Cache the new subscriber.
-			pmpro_mailpoet_get_subscriber( $user_id, $new_subscriber );
-		} catch ( \Exception $e ) {
-			// Log the error but don't break the request (e.g. checkout).
-			pmpro_mailpoet_log_api_error( sprintf( 'Error unsubscribing user %d from lists: %s', $user_id, $e->getMessage() ) );
-		}
-	}
-}
-
-/**
- * Get all MailPoet tags.
- *
- * @since TBD
- *
- * @return array
- */
-function pmpro_mailpoet_get_all_tags() {
-	// Check to see if we have already retrieved the tags.
-	static $cached;
-	if ( is_array( $cached ) ) {
-		return $cached;
-	}
-
-	// We don't have the tags yet. Get them and cache them.
-	$mailpoet_api = pmpro_mailpoet_get_api();
-	$cached = empty( $mailpoet_api ) ? array() : $mailpoet_api->getTags();
-
-	return $cached;
-}
-
-/**
- * Get all MailPoet tag IDs that a user is tagged with.
- *
- * @since TBD
- *
- * @param int $user_id The user to get tags for.
- * @return array An array of tag ids that the user is tagged with.
- */
-function pmpro_mailpoet_get_user_tag_ids( $user_id ) {
-	$subscriber = pmpro_mailpoet_get_subscriber( $user_id );
-	$user_tags  = ! empty( $subscriber['tags'] ) ? $subscriber['tags'] : array();
-	$tag_ids    = array();
-	foreach ( $user_tags as $tag ) {
-		if ( ! empty( $tag['tag_id'] ) ) {
-			$tag_ids[] = $tag['tag_id'];
-		}
-	}
-	return $tag_ids;
-}
-
-/**
- * Add tags to a user.
- *
- * @since TBD
- *
- * @param int $user_id The user to add tags to.
- * @param int[] $tag_ids The tags to add to the user.
- */
-function pmpro_mailpoet_add_user_to_tags( $user_id, $tag_ids ) {
-	if ( ! is_array( $tag_ids ) || empty( $tag_ids ) ) {
-		return;
-	}
-
-	$subscriber = pmpro_mailpoet_get_subscriber( $user_id );
-	if ( ! empty( $subscriber['id'] ) ) {
-		// Since we already have the subscriber, we know that API is available.
-		// MailPoet tags one subscriber at a time, so loop through the tags.
-		$new_subscriber = null;
-		foreach ( $tag_ids as $tag_id ) {
-			try {
-				$new_subscriber = pmpro_mailpoet_get_api()->tagSubscriber( $subscriber['id'], $tag_id );
-			} catch ( \Exception $e ) {
-				// Log the error but don't break the request (e.g. checkout) or skip the remaining tags.
-				pmpro_mailpoet_log_api_error( sprintf( 'Error adding tag %s to user %d: %s', $tag_id, $user_id, $e->getMessage() ) );
-			}
-		}
+		$new_subscriber = pmpro_mailpoet_get_api()->unsubscribeFromLists( $subscriber['id'], $list_ids );
 
 		// Cache the new subscriber.
-		if ( ! empty( $new_subscriber ) ) {
-			pmpro_mailpoet_get_subscriber( $user_id, $new_subscriber );
-		}
+		pmpro_mailpoet_get_subscriber( $user_id, $new_subscriber );
 	}
-}
-
-/**
- * Remove tags from a user.
- *
- * @since TBD
- *
- * @param int $user_id The user to remove tags from.
- * @param int[] $tag_ids The tags to remove from the user.
- */
-function pmpro_mailpoet_remove_user_from_tags( $user_id, $tag_ids ) {
-	if ( ! is_array( $tag_ids ) || empty( $tag_ids ) ) {
-		return;
-	}
-
-	$subscriber = pmpro_mailpoet_get_subscriber( $user_id );
-	if ( ! empty( $subscriber['id'] ) ) {
-		// Since we already have the subscriber, we know that API is available.
-		// MailPoet untags one subscriber at a time, so loop through the tags.
-		$new_subscriber = null;
-		foreach ( $tag_ids as $tag_id ) {
-			try {
-				$new_subscriber = pmpro_mailpoet_get_api()->untagSubscriber( $subscriber['id'], $tag_id );
-			} catch ( \Exception $e ) {
-				// Log the error but don't break the request (e.g. checkout) or skip the remaining tags.
-				pmpro_mailpoet_log_api_error( sprintf( 'Error removing tag %s from user %d: %s', $tag_id, $user_id, $e->getMessage() ) );
-			}
-		}
-
-		// Cache the new subscriber.
-		if ( ! empty( $new_subscriber ) ) {
-			pmpro_mailpoet_get_subscriber( $user_id, $new_subscriber );
-		}
-	}
-}
-
-/**
- * Get all MailPoet tag IDs that are managed by this plugin.
- *
- * Used to ensure that we only ever add or remove tags that are configured in
- * the plugin settings. Tags applied manually in MailPoet are never touched.
- *
- * @since TBD
- *
- * @return array An array of tag ids referenced in any level or non-member tag setting.
- */
-function pmpro_mailpoet_get_managed_tag_ids() {
-	$options      = pmpro_mailpoet_get_options();
-	$managed_tags = array();
-
-	// Non-member tags.
-	if ( ! empty( $options['nonmember_tags'] ) && is_array( $options['nonmember_tags'] ) ) {
-		$managed_tags = array_merge( $managed_tags, $options['nonmember_tags'] );
-	}
-
-	// Per-level tags.
-	$levels = pmpro_mailpoet_get_all_levels();
-	foreach ( $levels as $level ) {
-		$key = 'level_' . (int) $level->id . '_tags';
-		if ( ! empty( $options[ $key ] ) && is_array( $options[ $key ] ) ) {
-			$managed_tags = array_merge( $managed_tags, $options[ $key ] );
-		}
-	}
-
-	return array_unique( $managed_tags );
 }
