@@ -60,10 +60,8 @@ function pmpro_mailpoet_admin_init() {
 		)
 	);
 	add_settings_field( 'pmpro_mailpoet_option_nonmember_lists', esc_html__( 'Non-Member Lists', 'mailpoet-paid-memberships-pro-add-on' ), 'pmpro_mailpoet_option_nonmember_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
+	add_settings_field( 'pmpro_mailpoet_option_nonmember_tags', esc_html__( 'Non-Member Tags', 'mailpoet-paid-memberships-pro-add-on' ), 'pmpro_mailpoet_option_nonmember_tags', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
 	add_settings_field( 'pmpro_mailpoet_option_opt_in_lists', esc_html__( 'Opt-in Lists', 'mailpoet-paid-memberships-pro-add-on' ), 'pmpro_mailpoet_option_opt_in_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
-
-	//SendWP Email Deliverability.
-	add_settings_field( 'pmpro_mailpoet_sendwp_cta', 'Email Deliverability', 'pmpro_mailpoet_sendwp_cta', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_opt_in_lists' );
 
 	add_settings_section(
 		'pmpro_mailpoet_section_membership_lists',
@@ -79,7 +77,22 @@ function pmpro_mailpoet_admin_init() {
 	foreach ( $levels as $level ) {
 		add_settings_field( 'pmpro_mailpoet_option_memberships_lists_' . (int) $level->id, esc_html( $level->name ), 'pmpro_mailpoet_option_memberships_lists', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists', array( $level ) );
 	}
-	add_settings_field( 'pmpro_mailpoet_option_unsubscribe_on_level_change', esc_html__( 'Unsubscribe on Level Change?', 'mailpoet-paid-memberships-pro-add-on' ), 'pmpro_mailpoet_option_unsubscribe_on_level_change', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists' );	
+	add_settings_field( 'pmpro_mailpoet_option_unsubscribe_on_level_change', esc_html__( 'Unsubscribe on Level Change?', 'mailpoet-paid-memberships-pro-add-on' ), 'pmpro_mailpoet_option_unsubscribe_on_level_change', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_lists' );
+
+	// Membership Tags.
+	add_settings_section(
+		'pmpro_mailpoet_section_membership_tags',
+		'',
+		'pmpro_mailpoet_section_membership_tags',
+		'pmpro_mailpoet_options',
+		array(
+			'before_section' => '<div class="pmpro_section">',
+			'after_section'  => '</div></div>',
+		)
+	);
+	foreach ( $levels as $level ) {
+		add_settings_field( 'pmpro_mailpoet_option_memberships_tags_' . (int) $level->id, esc_html( $level->name ), 'pmpro_mailpoet_option_memberships_tags', 'pmpro_mailpoet_options', 'pmpro_mailpoet_section_membership_tags', array( $level ) );
+	}
 }
 add_action( 'admin_init', 'pmpro_mailpoet_admin_init' );
 
@@ -97,15 +110,17 @@ function pmpro_mailpoet_options_validate( $input ) {
 	// Unsubscribe on level change.
 	$newinput['unsubscribe_on_level_change'] = isset( $input['unsubscribe_on_level_change'] ) ? preg_replace( '[^a-zA-Z0-9\-]', '', $input['unsubscribe_on_level_change'] ) : null;
 
-	// Checkboxes of lists to save.
+	// Checkboxes of lists and tags to save.
 	$mailpoet_lists_settings = array(
 		'nonmember_lists',
 		'opt-in_lists',
+		'nonmember_tags',
 	);
 
 	$levels = pmpro_mailpoet_get_all_levels();
 	foreach ( $levels as $level ) {
 		$mailpoet_lists_settings[] = 'level_' . (int) $level->id . '_lists';
+		$mailpoet_lists_settings[] = 'level_' . (int) $level->id . '_tags';
 	}
 
 	foreach ( $mailpoet_lists_settings as $setting ) {
@@ -200,6 +215,45 @@ function pmpro_mailpoet_option_memberships_lists( $level ) {
 }
 
 /**
+ * Add description for Membership Tags section.
+ *
+ * @since 3.4
+ */
+function pmpro_mailpoet_section_membership_tags() {
+	?>
+	<div id="pmpro-mailpoet-membership-tags" class="pmpro_section_toggle" data-visibility="hidden" data-activated="false">
+		<button class="pmpro_section-toggle-button" type="button" aria-expanded="false">
+			<span class="dashicons dashicons-arrow-up-alt2"></span>
+			<?php esc_html_e( 'Membership Tags', 'mailpoet-paid-memberships-pro-add-on' ); ?>
+		</button>
+	</div>
+	<div class="pmpro_section_inside">
+		<p><?php esc_html_e( 'Members will automatically be assigned the selected tags when they receive the corresponding membership level. Tags are removed when the member no longer has the level.', 'mailpoet-paid-memberships-pro-add-on' ); ?></p>
+	<?php
+}
+
+/**
+ * Show the membership tags setting for the given level.
+ *
+ * @since 3.4
+ *
+ * @param object $level The level to show the tags for.
+ */
+function pmpro_mailpoet_option_memberships_tags( $level ) {
+	pmpro_mailpoet_settings_build_tag_checkboxes_helper( 'level_' . (int) $level[0]->id . '_tags' );
+}
+
+/**
+ * Show the "Non-Member Tags" setting.
+ *
+ * @since 3.4
+ */
+function pmpro_mailpoet_option_nonmember_tags() {
+	pmpro_mailpoet_settings_build_tag_checkboxes_helper( 'nonmember_tags' );
+	echo '<p class="description">' . esc_html__( 'Members will automatically be tagged with these tags when they register without a membership level or when their membership level is removed (e.g. on cancellation).', 'mailpoet-paid-memberships-pro-add-on' ) . '</p>';
+}
+
+/**
  * Show the "Non-Member Lists" setting.
  *
  * @since 3.0
@@ -226,48 +280,6 @@ function pmpro_mailpoet_option_unsubscribe_on_level_change() {
 }
 
 /**
- * Add SendWP connectivity settings callback. Copied  logic from PMPro core.
- *
- * @since 3.0
- */
-function pmpro_mailpoet_sendwp_cta() {
-	?>			
-	<p><?php
-			$allowed_email_troubleshooting_html = array (
-				'a' => array (
-					'href' => array(),
-					'target' => array(),
-					'title' => array(),
-					'rel' => array(),
-				),
-				'em' => array(),
-			);
-			echo sprintf( wp_kses( __( 'If you are having issues with email delivery from your server, <a href="%s" title="Paid Memberships Pro - Subscription Delays Add On" target="_blank" rel="nofollow noopener">please read our email troubleshooting guide</a>. As an alternative, Paid Memberships Pro offers built-in integration for SendWP. <em>Optional: SendWP is a third-party service for transactional email in WordPress. <a href="%s" title="Documentation on SendWP and Paid Memberships Pro" target="_blank" rel="nofollow noopener">Click here to learn more about SendWP and Paid Memberships Pro</a></em>.', 'mailpoet-paid-memberships-pro-add-on' ), $allowed_email_troubleshooting_html ), 'https://www.paidmembershipspro.com/troubleshooting-email-issues-sending-sent-spam-delivery-delays/?utm_source=plugin&utm_medium=pmpro-emailsettings&utm_campaign=blog&utm_content=email-troubleshooting', 'https://www.paidmembershipspro.com/documentation/member-communications/email-delivery-sendwp/?utm_source=plugin&utm_medium=pmpro-emailsettings&utm_campaign=documentation&utm_content=sendwp' );
-		?></p>
-
-		<?php
-			// Check to see if connected or not.
-			$sendwp_connected = function_exists( 'sendwp_client_connected' ) && sendwp_client_connected() ? true : false;
-
-			if ( ! $sendwp_connected ) { ?>
-				<p><button id="pmpro-sendwp-connect" class="button"><?php esc_html_e( 'Connect to SendWP', 'mailpoet-paid-memberships-pro-add-on' ); ?></button></p>
-			<?php } else { ?>
-				<p><button id="pmpro-sendwp-disconnect" class="button-primary"><?php esc_html_e( 'Disconnect from SendWP', 'mailpoet-paid-memberships-pro-add-on' ); ?></button></p>
-				<?php
-				// Update SendWP status to see if email forwarding is enabled or not.
-				$sendwp_email_forwarding = function_exists( 'sendwp_forwarding_enabled' ) && sendwp_forwarding_enabled() ? true : false;
-				
-				// Messages for connected or not.
-				$connected = __( 'Your site is connected to SendWP.', 'mailpoet-paid-memberships-pro-add-on' ) . " <a href='https://app.sendwp.com/dashboard/' target='_blank' rel='nofollow noopener'>" . __( 'View Your SendWP Account', 'mailpoet-paid-memberships-pro-add-on' ) . "</a>";
-				$disconnected = ' ' . sprintf( __( 'Please enable email sending inside %s.', 'mailpoet-paid-memberships-pro-add-on' ), '<a href="' . admin_url('/tools.php?page=sendwp') . '">SendWP Settings</a>' );
-				?>
-				<p class="description" id="pmpro-sendwp-description"><?php echo $sendwp_email_forwarding ? $connected : $disconnected; ?></p>
-			<?php }
-		?>
-	<?php
-}
-
-/**
  * Show the "Opt-in Lists" setting.
  *
  * @since 3.0
@@ -279,30 +291,31 @@ function pmpro_mailpoet_option_opt_in_lists() {
 }
 
 /**
- * Helper function to show checkboxes for MailPoet lists.
+ * Helper function to show checkboxes for MailPoet lists or tags.
  *
  * @since 3.0
  *
  * @param string $option_name The name of the option to show the checkboxes for.
+ * @param array|null $items The items (lists or tags) to show checkboxes for. Defaults to all MailPoet lists.
  */
-function pmpro_mailpoet_settings_build_list_checkboxes_helper( $option_name ) {
-	$pmpro_mailpoet_lists = pmpro_mailpoet_get_all_lists();
+function pmpro_mailpoet_settings_build_list_checkboxes_helper( $option_name, $items = null ) {
+	$pmpro_mailpoet_items = is_array( $items ) ? $items : pmpro_mailpoet_get_all_lists();
 	$options              = pmpro_mailpoet_get_options();
 
 	if ( isset( $options[ $option_name ] ) && is_array( $options[ $option_name ] ) ) {
-		$selected_lists = $options[ $option_name ];
+		$selected_items = $options[ $option_name ];
 	} else {
-		$selected_lists = array();
+		$selected_items = array();
 	}
 
-	if ( ! empty( $pmpro_mailpoet_lists ) ) { ?>
-		<div class="pmpro_checkbox_box <?php echo ( count( $pmpro_mailpoet_lists ) > 6 ) ? 'pmpro_scrollable' : ''; ?>">
+	if ( ! empty( $pmpro_mailpoet_items ) ) { ?>
+		<div class="pmpro_checkbox_box <?php echo ( count( $pmpro_mailpoet_items ) > 6 ) ? 'pmpro_scrollable' : ''; ?>">
 		<?php
-			foreach ( $pmpro_mailpoet_lists as $list ) {
-				$checked_modifier = in_array( $list['id'], $selected_lists ) ? ' checked' : '';
+			foreach ( $pmpro_mailpoet_items as $item ) {
+				$checked_modifier = in_array( $item['id'], $selected_items ) ? ' checked' : '';
 				echo '<div class="pmpro_clickable">';
-				echo( "<input type='checkbox' name='pmpro_mailpoet_options[" . esc_attr( $option_name ) . "][]' value='" . esc_attr( $list['id'] ) . "' id='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $list['id'] ) . "'" . $checked_modifier . '>' );
-				echo( "<label for='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $list['id'] ) . "' class='pmpromailpoet-checkbox-label'>" . esc_html( $list['name'] ) . '</label>' );
+				echo( "<input type='checkbox' name='pmpro_mailpoet_options[" . esc_attr( $option_name ) . "][]' value='" . esc_attr( $item['id'] ) . "' id='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $item['id'] ) . "'" . $checked_modifier . '>' );
+				echo( "<label for='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $item['id'] ) . "' class='pmpromailpoet-checkbox-label'>" . esc_html( $item['name'] ) . '</label>' );
 				echo '</div>';
 			}
 		?>
@@ -310,4 +323,20 @@ function pmpro_mailpoet_settings_build_list_checkboxes_helper( $option_name ) {
 	<?php } else {
 		esc_html_e( 'No lists found.', 'mailpoet-paid-memberships-pro-add-on' );
 	}
+}
+
+/**
+ * Helper function to show checkboxes for MailPoet tags.
+ *
+ * @since 3.4
+ *
+ * @param string $option_name The name of the option to show the checkboxes for.
+ */
+function pmpro_mailpoet_settings_build_tag_checkboxes_helper( $option_name ) {
+	$pmpro_mailpoet_tags = pmpro_mailpoet_get_all_tags();
+	if ( empty( $pmpro_mailpoet_tags ) ) {
+		echo '<p class="description">' . esc_html__( 'No tags found. Add tags in MailPoet to assign them to members.', 'mailpoet-paid-memberships-pro-add-on' ) . '</p>';
+		return;
+	}
+	pmpro_mailpoet_settings_build_list_checkboxes_helper( $option_name, $pmpro_mailpoet_tags );
 }

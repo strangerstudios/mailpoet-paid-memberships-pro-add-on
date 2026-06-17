@@ -15,6 +15,7 @@ define( 'PMPRO_MAILPOET_DIR', dirname( __FILE__ ) );
 
 require_once PMPRO_MAILPOET_DIR . '/includes/functions.php';               // General plugin functions.
 require_once PMPRO_MAILPOET_DIR . '/includes/members-lists-functions.php'; // Handle adding/removing users from lists on level change.
+require_once PMPRO_MAILPOET_DIR . '/includes/members-tags-functions.php';  // Handle adding/removing tags on level change.
 require_once PMPRO_MAILPOET_DIR . '/includes/opt-in-lists-functions.php';  // Handle adding/removing users from opt-in lists.
 require_once PMPRO_MAILPOET_DIR . '/includes/api-wrapper.php';             // Abstract API interaction.
 require_once PMPRO_MAILPOET_DIR . '/includes/settings.php';                // Set up settings page.
