@@ -12,7 +12,6 @@ function pmpro_mailpoet_get_options() {
 		'unsubscribe_on_level_change' => 1,
 		'nonmember_lists'             => array(),
 		'opt-in_lists'                => array(),
-		'nonmember_tags'              => array(),
 	);
 	$options = get_option( 'pmpro_mailpoet_options', array() );
 	return array_merge( $defualt_options, $options );

@@ -11,24 +11,6 @@ function pmpro_mailpoet_get_api() {
 }
 
 /**
- * Log a MailPoet API error without interrupting the request.
- *
- * The MailPoet API can throw exceptions during otherwise-successful operations
- * (e.g. a list change succeeds but the confirmation email fails to send). We
- * never want such a failure to produce a fatal error during checkout or a
- * level change, so callers catch the exception and log it here instead.
- *
- * @since TBD
- *
- * @param string $message The error message to log.
- */
-function pmpro_mailpoet_log_api_error( $message ) {
-	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-		error_log( 'PMPro MailPoet: ' . $message );
-	}
-}
-
-/**
  * Get all MailPoet lists.
  *
  * @since 3.0
@@ -137,8 +119,7 @@ function pmpro_mailpoet_add_user_to_lists( $user_id, $list_ids ) {
 	$subscriber = pmpro_mailpoet_get_subscriber( $user_id );
 	if ( ! empty( $subscriber['id'] ) ) {
 		// Since we already have the subscriber, we know that API is available.
-		try {
-			$new_subscriber = pmpro_mailpoet_get_api()->subscribeToLists( $subscriber['id'], $list_ids );
+		$new_subscriber = pmpro_mailpoet_get_api()->subscribeToLists( $subscriber['id'], $list_ids );
 
 			// Cache the new subscriber.
 			pmpro_mailpoet_get_subscriber( $user_id, $new_subscriber );
