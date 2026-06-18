@@ -1,9 +1,9 @@
 === Paid Memberships Pro - MailPoet Add On ===
-Contributors: strangerstudios, andrewza, dlparker1005, paidmembershipspro
-Tags: mailpoet, paid newsletter, private newsletter, pmpro, paid memberships pro, restrict content
-Requires at least: 5.2
-Tested up to: 6.6
-Stable tag: 3.3.2
+Contributors: strangerstudios
+Tags: mailpoet, paid newsletter, private newsletter, pmpro, paid memberships pro
+Requires at least: 6.0
+Tested up to: 7.0
+Stable tag: 3.4
 License: GPLv2 or later 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -98,6 +98,9 @@ Please visit [our support site at https://www.paidmembershipspro.com](http://www
 4. When Sending a Newsletter in MailPoet, Choose Your Member-Specific Lists for Paid Newsletter Functionality Like Substack.
 
 == Changelog ==
+= 3.4 - 2026-06-18 =
+* ENHANCEMENT: Added support for tagging in MailPoet. #22 (@andrewlimaza,@kimcoleman)
+
 = 3.3.2 - 2025-12-09 =
 * BUG FIX: Fixed an issue where the plugin notice would show even if you are using the latest version of MailPoet. #19 (@dwanjuki)
 

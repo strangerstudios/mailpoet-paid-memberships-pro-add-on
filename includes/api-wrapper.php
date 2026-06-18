@@ -11,6 +11,24 @@ function pmpro_mailpoet_get_api() {
 }
 
 /**
+ * Log a MailPoet API error without interrupting the request.
+ *
+ * The MailPoet API can throw exceptions during otherwise-successful operations
+ * (e.g. a list change succeeds but the confirmation email fails to send). We
+ * never want such a failure to produce a fatal error during checkout or a
+ * level change, so callers catch the exception and log it here instead.
+ *
+ * @since 3.4
+ *
+ * @param string $message The error message to log.
+ */
+function pmpro_mailpoet_log_api_error( $message ) {
+	if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+		error_log( 'PMPro MailPoet: ' . $message );
+	}
+}
+
+/**
  * Get all MailPoet lists.
  *
  * @since 3.0
@@ -119,7 +137,8 @@ function pmpro_mailpoet_add_user_to_lists( $user_id, $list_ids ) {
 	$subscriber = pmpro_mailpoet_get_subscriber( $user_id );
 	if ( ! empty( $subscriber['id'] ) ) {
 		// Since we already have the subscriber, we know that API is available.
-		$new_subscriber = pmpro_mailpoet_get_api()->subscribeToLists( $subscriber['id'], $list_ids );
+		try {
+			$new_subscriber = pmpro_mailpoet_get_api()->subscribeToLists( $subscriber['id'], $list_ids );
 
 			// Cache the new subscriber.
 			pmpro_mailpoet_get_subscriber( $user_id, $new_subscriber );
@@ -169,7 +188,7 @@ function pmpro_mailpoet_remove_user_from_lists( $user_id, $list_ids ) {
 /**
  * Get all MailPoet tags.
  *
- * @since TBD
+ * @since 3.4
  *
  * @return array
  */
@@ -190,7 +209,7 @@ function pmpro_mailpoet_get_all_tags() {
 /**
  * Get all MailPoet tag IDs that a user is tagged with.
  *
- * @since TBD
+ * @since 3.4
  *
  * @param int $user_id The user to get tags for.
  * @return array An array of tag ids that the user is tagged with.
@@ -210,7 +229,7 @@ function pmpro_mailpoet_get_user_tag_ids( $user_id ) {
 /**
  * Add tags to a user.
  *
- * @since TBD
+ * @since 3.4
  *
  * @param int $user_id The user to add tags to.
  * @param int[] $tag_ids The tags to add to the user.
@@ -250,7 +269,7 @@ function pmpro_mailpoet_add_user_to_tags( $user_id, $tag_ids ) {
 /**
  * Remove tags from a user.
  *
- * @since TBD
+ * @since 3.4
  *
  * @param int $user_id The user to remove tags from.
  * @param int[] $tag_ids The tags to remove from the user.
@@ -292,7 +311,7 @@ function pmpro_mailpoet_remove_user_from_tags( $user_id, $tag_ids ) {
  * Used to ensure that we only ever add or remove tags that are configured in
  * the plugin settings. Tags applied manually in MailPoet are never touched.
  *
- * @since TBD
+ * @since 3.4
  *
  * @return array An array of tag ids referenced in any level or non-member tag setting.
  */

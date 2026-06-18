@@ -3,7 +3,7 @@
  * Plugin Name: Paid Memberships Pro - MailPoet
  * Plugin URI: https://www.paidmembershipspro.com/add-ons/mailpoet-integration/
  * Description: Automatically subscribe members to MailPoet lists or allow them to opt-in to specific MailPoet newsletters.
- * Version: 3.3.2
+ * Version: 3.4
  * Author: Paid Memberships Pro
  * Author URI: https://www.paidmembershipspro.com
  * Text Domain: mailpoet-paid-memberships-pro-add-on
@@ -15,6 +15,7 @@ define( 'PMPRO_MAILPOET_DIR', dirname( __FILE__ ) );
 
 require_once PMPRO_MAILPOET_DIR . '/includes/functions.php';               // General plugin functions.
 require_once PMPRO_MAILPOET_DIR . '/includes/members-lists-functions.php'; // Handle adding/removing users from lists on level change.
+require_once PMPRO_MAILPOET_DIR . '/includes/members-tags-functions.php';  // Handle adding/removing tags on level change.
 require_once PMPRO_MAILPOET_DIR . '/includes/opt-in-lists-functions.php';  // Handle adding/removing users from opt-in lists.
 require_once PMPRO_MAILPOET_DIR . '/includes/api-wrapper.php';             // Abstract API interaction.
 require_once PMPRO_MAILPOET_DIR . '/includes/settings.php';                // Set up settings page.
