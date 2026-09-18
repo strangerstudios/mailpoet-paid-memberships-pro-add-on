@@ -27,7 +27,7 @@ function pmpro_mailpoet_get_options() {
  */
 function pmpro_mailpoet_get_all_levels() {
 	if ( function_exists( 'pmpro_getAllLevels' ) ) {
-		return pmpro_getAllLevels();
+		return pmpro_getAllLevels(true); // include levels with new signups disabled
 	} else {
 		return array();
 	}
