@@ -2,8 +2,8 @@
 Contributors: strangerstudios
 Tags: mailpoet, paid newsletter, private newsletter, pmpro, paid memberships pro
 Requires at least: 6.0
-Tested up to: 7.0
-Stable tag: 3.4
+Tested up to: 7.1
+Stable tag: 3.4.1
 License: GPLv2 or later 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -98,6 +98,9 @@ Please visit [our support site at https://www.paidmembershipspro.com](http://www
 4. When Sending a Newsletter in MailPoet, Choose Your Member-Specific Lists for Paid Newsletter Functionality Like Substack.
 
 == Changelog ==
+= 3.4.1 - 2026-09-23 =
+* BUG FIX: Fixed an issue where disabled new signup levels would not show in MailPoet settings. #24 (@kimwhite)
+
 = 3.4 - 2026-06-18 =
 * ENHANCEMENT: Added support for tagging in MailPoet. #22 (@andrewlimaza,@kimcoleman)
 
