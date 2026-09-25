@@ -10,6 +10,10 @@
  * Domain Path: /languages
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 define( 'PMPRO_MAILPOET_BASE_FILE', __FILE__ );
 define( 'PMPRO_MAILPOET_DIR', dirname( __FILE__ ) );
 
@@ -31,7 +35,8 @@ function pmpro_mailpoet_show_notice() {
 		return;
 	}
 	// Show the notice here.
-	if ( ! empty( $_REQUEST['page'] ) && sanitize_text_field( $_REQUEST['page'] ) == 'pmpro-mailpoet' ) {
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only check of the current admin page to decide whether to show a notice.
+	if ( ! empty( $_REQUEST['page'] ) && sanitize_text_field( wp_unslash( $_REQUEST['page'] ) ) == 'pmpro-mailpoet' ) {
 		$mailpoet_v3_org = 'https://wordpress.org/plugins/mailpoet/';
 		$msgt            = sprintf(
 			__( "In order for <strong>Paid Memberships Pro - MailPoet Integration</strong> to function correctly, you must install or activate the latest version of <a href='%s' target='_blank'>MailPoet v3</a>.", 'mailpoet-paid-memberships-pro-add-on' ),
