@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Dispaly additional opt-in list fields on checkout
  *
@@ -43,10 +47,14 @@ add_action( 'pmpro_checkout_boxes', 'pmpro_mailpoet_additional_lists_on_checkout
  * @since 3.0
  */
 function pmpro_mailpoet_pmpro_paypalexpress_session_vars() {
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Runs during PMPro checkout processing, after the checkout nonce is verified in preheaders/checkout.php.
 	if ( isset( $_REQUEST['pmpro_mailpoet_opt-in_lists_showing'] ) ) {
-		$_SESSION['pmpro_mailpoet_opt-in_lists_showing'] = pmpro_sanitize( $_REQUEST['pmpro_mailpoet_opt-in_lists_showing'] );
-		$_SESSION['pmpro_mailpoet_opt-in_lists']         = isset( $_REQUEST['pmpro_mailpoet_opt-in_lists'] ) ? pmpro_sanitize( $_REQUEST['pmpro_mailpoet_opt-in_lists'] ) : array();
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized by pmpro_sanitize().
+		$_SESSION['pmpro_mailpoet_opt-in_lists_showing'] = pmpro_sanitize( wp_unslash( $_REQUEST['pmpro_mailpoet_opt-in_lists_showing'] ) );
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized by pmpro_sanitize().
+		$_SESSION['pmpro_mailpoet_opt-in_lists']         = isset( $_REQUEST['pmpro_mailpoet_opt-in_lists'] ) ? pmpro_sanitize( wp_unslash( $_REQUEST['pmpro_mailpoet_opt-in_lists'] ) ) : array();
 	}
+	// phpcs:enable WordPress.Security.NonceVerification.Recommended
 }
 add_action( 'pmpro_paypalexpress_session_vars', 'pmpro_mailpoet_pmpro_paypalexpress_session_vars' );
 
@@ -160,7 +168,7 @@ function pmpro_mailpoet_show_optin_checkboxes( $user_id = null ) {
 					?>
 					<li class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_list_item' ) ); ?>">
 						<span class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_field-checkbox-grouped-item' ) ); ?>">
-							<input name="pmpro_mailpoet_opt-in_lists[]" type="checkbox" value="<?php echo esc_attr( $optin_list['id'] ) . "' id='pmpro_mailpoet_opt-in_lists_" . esc_attr( $optin_list['id'] ); ?>" id="pmpro_mailpoet_opt-in_lists_<?php echo esc_attr( $optin_list['id'] ); ?>" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-checkbox' ) ); ?>" <?php echo $checked_modifier; ?>>
+							<input name="pmpro_mailpoet_opt-in_lists[]" type="checkbox" value="<?php echo esc_attr( $optin_list['id'] ) . "' id='pmpro_mailpoet_opt-in_lists_" . esc_attr( $optin_list['id'] ); ?>" id="pmpro_mailpoet_opt-in_lists_<?php echo esc_attr( $optin_list['id'] ); ?>" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-checkbox' ) ); ?>" <?php echo $checked_modifier; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static string, either ' checked' or empty. ?>>
 							<label for="pmpro_mailpoet_opt-in_lists_<?php echo esc_attr( $optin_list['id'] ); ?>" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label pmpro_form_label-inline pmpro_clickable' ) ); ?>"><?php echo esc_html( $optin_list['name'] ); ?></label>
 						</span>
 					</li>
@@ -181,6 +189,7 @@ function pmpro_mailpoet_show_optin_checkboxes( $user_id = null ) {
  * @param int $user_id User ID to save checkboxes for.
  */
 function pmpro_mailpoet_save_optin_list_selections( $user_id ) {
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Nonce verified upstream: WP profile save (check_admin_referer in user-edit.php), PMPro frontend profile edit (update-user_ nonce in includes/profile.php), PMPro Edit Member panel save (adminpages/member-edit.php) or PMPro checkout (checkout nonce in preheaders/checkout.php).
 	// Only try to save if opt-in lists were shown.
 	if ( empty( $_REQUEST['pmpro_mailpoet_opt-in_lists_showing'] ) && empty( $_SESSION['pmpro_mailpoet_opt-in_lists_showing'] ) ) {
 		return;
@@ -195,11 +204,14 @@ function pmpro_mailpoet_save_optin_list_selections( $user_id ) {
 	// Get user's new opt-in lists.
 	if ( ! empty( $_REQUEST['pmpro_mailpoet_opt-in_lists_showing'] ) ) {
 		// Pull from $_REQUEST.
-		$selected_optin_list_ids = ! empty( $_REQUEST['pmpro_mailpoet_opt-in_lists'] ) ? pmpro_sanitize( $_REQUEST['pmpro_mailpoet_opt-in_lists'] ) : array();
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized by pmpro_sanitize().
+		$selected_optin_list_ids = ! empty( $_REQUEST['pmpro_mailpoet_opt-in_lists'] ) ? pmpro_sanitize( wp_unslash( $_REQUEST['pmpro_mailpoet_opt-in_lists'] ) ) : array();
 	} else {
 		// Pull from $_SESSION.
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized by pmpro_sanitize().
 		$selected_optin_list_ids = ! empty( $_SESSION['pmpro_mailpoet_opt-in_lists'] ) ? pmpro_sanitize( $_SESSION['pmpro_mailpoet_opt-in_lists'] ) : array();
 	}
+	// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 	// Get user's current lists.
 	$user_list_ids = pmpro_mailpoet_get_user_list_ids( $user_id );

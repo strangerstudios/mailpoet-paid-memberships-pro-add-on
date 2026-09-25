@@ -1,4 +1,8 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /*
  * Add Menu Item for "MailPoet".
  *
@@ -314,7 +318,7 @@ function pmpro_mailpoet_settings_build_list_checkboxes_helper( $option_name, $it
 			foreach ( $pmpro_mailpoet_items as $item ) {
 				$checked_modifier = in_array( $item['id'], $selected_items ) ? ' checked' : '';
 				echo '<div class="pmpro_clickable">';
-				echo( "<input type='checkbox' name='pmpro_mailpoet_options[" . esc_attr( $option_name ) . "][]' value='" . esc_attr( $item['id'] ) . "' id='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $item['id'] ) . "'" . $checked_modifier . '>' );
+				echo( "<input type='checkbox' name='pmpro_mailpoet_options[" . esc_attr( $option_name ) . "][]' value='" . esc_attr( $item['id'] ) . "' id='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $item['id'] ) . "'" . $checked_modifier . '>' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Values are escaped; $checked_modifier is a static string.
 				echo( "<label for='pmpro_mailpoet_" . esc_attr( $option_name ) . '_' . esc_attr( $item['id'] ) . "' class='pmpromailpoet-checkbox-label'>" . esc_html( $item['name'] ) . '</label>' );
 				echo '</div>';
 			}
