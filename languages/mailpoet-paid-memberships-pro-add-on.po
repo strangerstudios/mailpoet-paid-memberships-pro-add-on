@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Paid Memberships Pro - MailPoet plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Paid Memberships Pro - MailPoet 3.4.1\n"
+"Project-Id-Version: Paid Memberships Pro - MailPoet 3.4.2\n"
 "Report-Msgid-Bugs-To: info@paidmembershipspro.com\n"
 "Last-Translator: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "Language-Team: Paid Memberships Pro <info@paidmembershipspro.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-23T06:26:12+00:00\n"
+"POT-Creation-Date: 2026-09-29T14:57:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: mailpoet-paid-memberships-pro-add-on\n"
@@ -45,76 +45,90 @@ msgid "https://www.paidmembershipspro.com"
 msgstr ""
 
 #: includes/opt-in-lists-functions.php:70
+#: includes/opt-in-lists-functions.php:78
 msgid "Opt-in MailPoet Lists"
 msgstr ""
 
 #: includes/opt-in-lists-functions.php:75
+#: includes/opt-in-lists-functions.php:83
 msgid "Mailing Lists"
 msgstr ""
 
 #: includes/settings.php:13
 #: includes/settings.php:32
+#: includes/settings.php:17
 msgid "MailPoet"
 msgstr ""
 
 #: includes/settings.php:13
+#: includes/settings.php:17
 msgid "PMPro MailPoet"
 msgstr ""
 
 #: includes/settings.php:50
 #: includes/settings.php:26
+#: includes/settings.php:30
 msgid "MailPoet Integration Settings"
 msgstr ""
 
 #: includes/settings.php:59
 #: includes/settings.php:35
+#: includes/settings.php:39
 msgid "Save Settings"
 msgstr ""
 
 #: includes/settings.php:86
 #: includes/settings.php:62
+#: includes/settings.php:66
 msgid "Non-Member Lists"
 msgstr ""
 
 #: includes/settings.php:87
 #: includes/settings.php:63
 #: includes/settings.php:64
+#: includes/settings.php:68
 msgid "Opt-in Lists"
 msgstr ""
 
 #: includes/settings.php:106
 #: includes/settings.php:82
 #: includes/settings.php:80
+#: includes/settings.php:84
 msgid "Unsubscribe on Level Change?"
 msgstr ""
 
 #: includes/settings.php:174
 #: includes/settings.php:150
 #: includes/settings.php:165
+#: includes/settings.php:169
 msgid "Membership lists lists cannot also be set as opt-in lists."
 msgstr ""
 
 #: includes/settings.php:211
 #: includes/settings.php:187
 #: includes/settings.php:202
+#: includes/settings.php:206
 msgid "Users will automatically be subscribed to selected lists when they receive the corresponding membership level."
 msgstr ""
 
 #: includes/settings.php:233
 #: includes/settings.php:209
 #: includes/settings.php:263
+#: includes/settings.php:267
 msgid "Users will automatically be subscribed to non-member lists when they register without purchasing a membership level or when their membership level is removed."
 msgstr ""
 
 #: includes/settings.php:246
 #: includes/settings.php:222
 #: includes/settings.php:276
+#: includes/settings.php:280
 msgid "No."
 msgstr ""
 
 #: includes/settings.php:247
 #: includes/settings.php:223
 #: includes/settings.php:277
+#: includes/settings.php:281
 msgid "Yes, unsubscribe from old membership lists on level change."
 msgstr ""
 
@@ -153,18 +167,21 @@ msgstr ""
 #: includes/settings.php:301
 #: includes/settings.php:277
 #: includes/settings.php:289
+#: includes/settings.php:293
 msgid "Give users the option to subscribe to additional lists at checkout and on their profile page."
 msgstr ""
 
 #: includes/settings.php:335
 #: includes/settings.php:311
 #: includes/settings.php:324
+#: includes/settings.php:328
 msgid "No lists found."
 msgstr ""
 
 #: pmpro-mailpoet.php:36
 #: mailpoet-paid-memberships-pro-add-on.php:36
 #: mailpoet-paid-memberships-pro-add-on.php:37
+#: mailpoet-paid-memberships-pro-add-on.php:42
 #, php-format
 msgid "In order for <strong>Paid Memberships Pro - MailPoet Integration</strong> to function correctly, you must install or activate the latest version of <a href='%s' target='_blank'>MailPoet v3</a>."
 msgstr ""
@@ -172,30 +189,35 @@ msgstr ""
 #: pmpro-mailpoet.php:68
 #: mailpoet-paid-memberships-pro-add-on.php:68
 #: mailpoet-paid-memberships-pro-add-on.php:69
+#: mailpoet-paid-memberships-pro-add-on.php:74
 msgid "Settings"
 msgstr ""
 
 #: pmpro-mailpoet.php:86
 #: mailpoet-paid-memberships-pro-add-on.php:86
 #: mailpoet-paid-memberships-pro-add-on.php:87
+#: mailpoet-paid-memberships-pro-add-on.php:92
 msgid "View Documentation"
 msgstr ""
 
 #: pmpro-mailpoet.php:86
 #: mailpoet-paid-memberships-pro-add-on.php:86
 #: mailpoet-paid-memberships-pro-add-on.php:87
+#: mailpoet-paid-memberships-pro-add-on.php:92
 msgid "Docs"
 msgstr ""
 
 #: pmpro-mailpoet.php:87
 #: mailpoet-paid-memberships-pro-add-on.php:87
 #: mailpoet-paid-memberships-pro-add-on.php:88
+#: mailpoet-paid-memberships-pro-add-on.php:93
 msgid "Visit Customer Support Forum"
 msgstr ""
 
 #: pmpro-mailpoet.php:87
 #: mailpoet-paid-memberships-pro-add-on.php:87
 #: mailpoet-paid-memberships-pro-add-on.php:88
+#: mailpoet-paid-memberships-pro-add-on.php:93
 msgid "Support"
 msgstr ""
 
@@ -209,6 +231,8 @@ msgstr ""
 
 #: includes/opt-in-lists-functions.php:26
 #: includes/opt-in-lists-functions.php:103
+#: includes/opt-in-lists-functions.php:30
+#: includes/opt-in-lists-functions.php:111
 msgid "Join Our Mailing List"
 msgid_plural "Join Our Mailing Lists"
 msgstr[0] ""
@@ -217,31 +241,38 @@ msgstr[1] ""
 #: includes/settings.php:190
 #: includes/settings.php:166
 #: includes/settings.php:181
+#: includes/settings.php:185
 msgid "General Settings"
 msgstr ""
 
 #: includes/settings.php:207
 #: includes/settings.php:183
 #: includes/settings.php:198
+#: includes/settings.php:202
 msgid "Membership Lists"
 msgstr ""
 
 #: includes/settings.php:63
+#: includes/settings.php:67
 msgid "Non-Member Tags"
 msgstr ""
 
 #: includes/settings.php:227
+#: includes/settings.php:231
 msgid "Membership Tags"
 msgstr ""
 
 #: includes/settings.php:231
+#: includes/settings.php:235
 msgid "Members will automatically be assigned the selected tags when they receive the corresponding membership level. Tags are removed when the member no longer has the level."
 msgstr ""
 
 #: includes/settings.php:253
+#: includes/settings.php:257
 msgid "Members will automatically be tagged with these tags when they register without a membership level or when their membership level is removed (e.g. on cancellation)."
 msgstr ""
 
 #: includes/settings.php:338
+#: includes/settings.php:342
 msgid "No tags found. Add tags in MailPoet to assign them to members."
 msgstr ""
