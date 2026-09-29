@@ -168,7 +168,7 @@ function pmpro_mailpoet_show_optin_checkboxes( $user_id = null ) {
 					?>
 					<li class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_list_item' ) ); ?>">
 						<span class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_field-checkbox-grouped-item' ) ); ?>">
-							<input name="pmpro_mailpoet_opt-in_lists[]" type="checkbox" value="<?php echo esc_attr( $optin_list['id'] ) . "' id='pmpro_mailpoet_opt-in_lists_" . esc_attr( $optin_list['id'] ); ?>" id="pmpro_mailpoet_opt-in_lists_<?php echo esc_attr( $optin_list['id'] ); ?>" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-checkbox' ) ); ?>" <?php echo $checked_modifier; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static string, either ' checked' or empty. ?>>
+							<input name="pmpro_mailpoet_opt-in_lists[]" type="checkbox" value="<?php echo esc_attr( $optin_list['id'] ); ?>" id="pmpro_mailpoet_opt-in_lists_<?php echo esc_attr( $optin_list['id'] ); ?>" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_input pmpro_form_input-checkbox' ) ); ?>" <?php echo $checked_modifier; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Static string, either ' checked' or empty. ?>>
 							<label for="pmpro_mailpoet_opt-in_lists_<?php echo esc_attr( $optin_list['id'] ); ?>" class="<?php echo esc_attr( pmpro_get_element_class( 'pmpro_form_label pmpro_form_label-inline pmpro_clickable' ) ); ?>"><?php echo esc_html( $optin_list['name'] ); ?></label>
 						</span>
 					</li>
