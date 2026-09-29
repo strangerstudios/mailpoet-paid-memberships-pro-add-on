@@ -201,6 +201,9 @@ function pmpro_mailpoet_save_optin_list_selections( $user_id ) {
 		$selected_optin_list_ids = ! empty( $_SESSION['pmpro_mailpoet_opt-in_lists'] ) ? pmpro_sanitize( $_SESSION['pmpro_mailpoet_opt-in_lists'] ) : array();
 	}
 
+	// Only allow lists that are set as opt-in lists in the plugin settings.
+	$selected_optin_list_ids = array_intersect( array_map( 'intval', (array) $selected_optin_list_ids ), $all_optin_list_ids );
+
 	// Get user's current lists.
 	$user_list_ids = pmpro_mailpoet_get_user_list_ids( $user_id );
 
