@@ -3,7 +3,7 @@ Contributors: strangerstudios
 Tags: mailpoet, paid newsletter, private newsletter, pmpro, paid memberships pro
 Requires at least: 6.0
 Tested up to: 7.1
-Stable tag: 3.4.1
+Stable tag: 3.4.2
 License: GPLv2 or later 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html 
 
@@ -98,6 +98,12 @@ Please visit [our support site at https://www.paidmembershipspro.com](http://www
 4. When Sending a Newsletter in MailPoet, Choose Your Member-Specific Lists for Paid Newsletter Functionality Like Substack.
 
 == Changelog ==
+= 3.4.2 - 2026-09-29 =
+* SECURITY: Opt-in list selections are now limited to the lists set as opt-in lists in the plugin settings. #26 (@dparker1005)
+* SECURITY: Added direct file access protection to plugin files. #25 (@dparker1005)
+* SECURITY: Unslashed submitted opt-in list values before sanitizing them. #25 (@dparker1005)
+* BUG FIX: Fixed opt-in list checkboxes submitting an invalid value, which caused users to be unsubscribed and resubscribed to their selected opt-in lists each time they saved their profile. #25, #26 (@dparker1005)
+
 = 3.4.1 - 2026-09-23 =
 * BUG FIX: Fixed an issue where disabled new signup levels would not show in MailPoet settings. #24 (@kimwhite)
 
